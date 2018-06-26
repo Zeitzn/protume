@@ -5,6 +5,20 @@ VisualStudioVersion = 15.0.27703.2000
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ecommerce.protume", "ecommerce.protume\ecommerce.protume.csproj", "{95F4DC19-420A-4F0F-807A-68DB09E38F13}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "DataAccess", "{3C38DB25-268A-4844-AF73-5638F1053E4A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BusinessLogic", "BusinessLogic", "{291BB960-33EC-4080-9E6F-E4235C51E15E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataBase", "DataBase", "{8C27D312-7101-4DED-BAA3-8B2AA12CDE04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ecommerce.protume.BusinessLogic", "ecommerce.protume.BusinessLogic\ecommerce.protume.BusinessLogic.csproj", "{8498ED02-4FC0-40FE-A30A-C6EA87C7A307}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ecommerce.protume.DataAccess", "ecommerce.protume.DataAccess\ecommerce.protume.DataAccess.csproj", "{BD619BE5-A796-4CE5-B634-ADE5FD43FF05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ecommerce.protume.DataBase", "ecommerce.protume.DataBase\ecommerce.protume.DataBase.csproj", "{AAAE7FB4-F33A-4E61-BB8D-473047D3EC84}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{115428E3-E80E-4352-B3E7-55EE09EBDB3F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +29,27 @@ Global
 		{95F4DC19-420A-4F0F-807A-68DB09E38F13}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95F4DC19-420A-4F0F-807A-68DB09E38F13}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95F4DC19-420A-4F0F-807A-68DB09E38F13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8498ED02-4FC0-40FE-A30A-C6EA87C7A307}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8498ED02-4FC0-40FE-A30A-C6EA87C7A307}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8498ED02-4FC0-40FE-A30A-C6EA87C7A307}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8498ED02-4FC0-40FE-A30A-C6EA87C7A307}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD619BE5-A796-4CE5-B634-ADE5FD43FF05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD619BE5-A796-4CE5-B634-ADE5FD43FF05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD619BE5-A796-4CE5-B634-ADE5FD43FF05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD619BE5-A796-4CE5-B634-ADE5FD43FF05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAAE7FB4-F33A-4E61-BB8D-473047D3EC84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAAE7FB4-F33A-4E61-BB8D-473047D3EC84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAAE7FB4-F33A-4E61-BB8D-473047D3EC84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAAE7FB4-F33A-4E61-BB8D-473047D3EC84}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{95F4DC19-420A-4F0F-807A-68DB09E38F13} = {115428E3-E80E-4352-B3E7-55EE09EBDB3F}
+		{8498ED02-4FC0-40FE-A30A-C6EA87C7A307} = {291BB960-33EC-4080-9E6F-E4235C51E15E}
+		{BD619BE5-A796-4CE5-B634-ADE5FD43FF05} = {3C38DB25-268A-4844-AF73-5638F1053E4A}
+		{AAAE7FB4-F33A-4E61-BB8D-473047D3EC84} = {8C27D312-7101-4DED-BAA3-8B2AA12CDE04}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {165833B0-BBAF-4B21-915F-231AD0779D84}
