@@ -26,6 +26,27 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "minoan", "..\..\..\..\Downl
 		SlnRelativePath = "..\..\..\..\Downloads\Templates\templateComercio\minoan\"
 	EndProjectSection
 EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "gentelella-master", "..\..\..\..\Downloads\Templates\gentelella-master\", "{F51A9A7E-F3B9-4C56-9E93-2966F62AB876}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_62427"
+		Debug.AspNetCompiler.PhysicalPath = "..\..\..\..\Downloads\Templates\gentelella-master\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_62427\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_62427"
+		Release.AspNetCompiler.PhysicalPath = "..\..\..\..\Downloads\Templates\gentelella-master\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_62427\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "62427"
+		SlnRelativePath = "..\..\..\..\Downloads\Templates\gentelella-master\"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +61,10 @@ Global
 		{8FA0E1FB-1A78-4F7A-B1D3-0D240615FA76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8FA0E1FB-1A78-4F7A-B1D3-0D240615FA76}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{8FA0E1FB-1A78-4F7A-B1D3-0D240615FA76}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{F51A9A7E-F3B9-4C56-9E93-2966F62AB876}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F51A9A7E-F3B9-4C56-9E93-2966F62AB876}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F51A9A7E-F3B9-4C56-9E93-2966F62AB876}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{F51A9A7E-F3B9-4C56-9E93-2966F62AB876}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

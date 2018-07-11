@@ -1,0 +1,96 @@
+﻿@model IEnumerable<ecommerce.protume.Models.DataBase.detallePedido>
+
+@{
+    ViewBag.Title = "Pedidos";
+
+}
+
+<h2>@ViewBag.Title</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            N°
+        </th>
+        <th>
+            Producto
+        </th>
+        <th>
+            Nombres
+        </th>
+        <th>
+            Apellidos
+        </th>
+        <th>
+            Dirección de envío
+        </th>
+        <th>
+            Precio unitario
+        </th>
+        <th>
+            Cantidad
+        </th>
+
+        <th>
+            Estado
+        </th>
+
+        <th></th>
+    </tr>
+    @{
+        int i = 1;
+    }
+    @foreach (var item in Model)
+    {
+        string estilo;
+        if (item.pedido.estado=="Entregado")
+        {
+            estilo = "green";
+        }else if (item.pedido.estado == "En espera")
+        {
+            estilo = "orange";
+        }
+        else
+        {
+            estilo = "red";
+        }
+    <tr>
+        <td>
+            @i
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.detalleProducto.producto.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pedido.cliente.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pedido.cliente.apellidos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pedido.cliente.direccion_envio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.detalleProducto.producto.precio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cantidad)
+        </td>
+        <td style="color:@estilo">
+            @Html.DisplayFor(modelItem => item.pedido.estado)
+        </td>
+
+
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id = item.id }) |
+            @Html.ActionLink("Detalles", "Details", new { id = item.id })
+            @*@Html.ActionLink("Delete", "Delete", new { id = item.id })*@
+        </td>
+    </tr>
+        i++;
+    }
+
+</table>

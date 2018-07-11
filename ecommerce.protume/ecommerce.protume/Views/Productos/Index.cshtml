@@ -1,0 +1,44 @@
+﻿@model IEnumerable<ecommerce.protume.Models.DataBase.detalleProducto>
+
+@{
+    ViewBag.Title = "Productos";
+}
+
+
+
+@foreach (var item in Model)
+{
+   
+    <div class="col-md-3">
+        <div class="single-product">
+            <div class="single-product-img">
+                <a href="#">
+                    <img class="primary-img" src="img/product/sp7.jpg" alt="product">
+                    <img class="secondary-img" src="img/product/sp8.jpg" alt="product">
+                </a>
+                @*<div class="product-status">
+                    <span class="product-new">New</span>
+                </div>*@
+            </div>
+            <div class="single-product-content">
+                <div class="product-content-head">
+                    <h2 class="product-title"><a href="#">@item.producto.nombre</a></h2>
+                    <p class="product-price">$@item.producto.precio</p>
+                </div>
+                <div class="product-bottom-action">
+                    <div class="product-action">
+                        <div class="action-button">
+                            <button class="btn" type="button"><i class="fa fa-shopping-cart"></i> <span>Al Carrito</span></button>
+                        </div>
+                        <div class="action-view">
+                            <button type="button" class="btn" data-toggle="modal" data-target="#productModal"><i class="fa fa-search"></i>Detalles</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+}
+
+

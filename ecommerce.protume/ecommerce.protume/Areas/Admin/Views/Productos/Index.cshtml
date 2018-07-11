@@ -1,0 +1,93 @@
+﻿@model IEnumerable<ecommerce.protume.Models.DataBase.producto>
+
+@{
+    ViewBag.Title = "Productos";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@*<p>
+    @Html.ActionLink("Agregar", "Create")
+</p>*@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                N°
+            </th>
+            <th>
+                PRODUCTO
+            </th>
+            <th>
+                PRECIO (S/)
+            </th>
+            <th>
+                STOCK
+            </th>
+            <th>
+                DESCRIPCIÓN
+            </th>
+            <th>
+                CATEGORIA
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>
+                N°
+            </th>
+            <th>
+                PRODUCTO
+            </th>
+            <th>
+                PRECIO (S/)
+            </th>
+            <th>
+                STOCK
+            </th>
+            <th>
+                DESCRIPCIÓN
+            </th>
+            <th>
+                CATEGORIA
+            </th>
+            <th></th>
+        </tr>
+    </tfoot>
+    @{
+        int i = 1;
+    }
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @i
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.stock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.categoria.nombre)
+            </td>
+            <td>
+                <a href="~/Admin/detalleProductos/Create/@item.id">Asignar proveedor</a>
+                @*@Html.ActionLink("Asignar proveedor", "Edit", new { id = item.id })*@
+                @*@Html.ActionLink("Detalles", "Details", new { id = item.id }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.id })*@
+            </td>
+        </tr>
+        i++;
+    }
+
+</table>

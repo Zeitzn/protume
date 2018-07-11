@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ecommerce.protume.Models.DataBase.categoria>
+
+@{
+    ViewBag.Title = "Categorías";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Crear nuevo", "Create")
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                NOMBRE
+            </th>
+            <th>
+                DESCRIPCIÓN
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>
+                NOMBRE
+            </th>
+            <th>
+                DESCRIPCIÓN
+            </th>
+            <th></th>
+        </tr>
+    </tfoot>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcion)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.id }) |
+                @*@Html.ActionLink("Detalles", "Details", new { id=item.id }) |*@
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>
