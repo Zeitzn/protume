@@ -205,12 +205,13 @@
     <Compile Include="Areas\Admin\Controllers\DetallePedidosController.cs" />
     <Compile Include="Areas\Admin\Controllers\DetalleProductosController.cs" />
     <Compile Include="Areas\Admin\Controllers\PedidosController.cs" />
-    <Compile Include="Areas\Admin\Controllers\ProductosController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ArticulosController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProveedoresController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
+    <Compile Include="Controllers\TiendaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -256,6 +257,7 @@
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ResponseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -291,6 +293,7 @@
     <Content Include="assets\admin\images\prod-5.jpg" />
     <Content Include="assets\admin\images\user.png" />
     <Content Include="assets\admin\images\visa.png" />
+    <Content Include="assets\admin\js\jquery.form.min.js" />
     <Content Include="assets\admin\vendors\animate.css\animate.css" />
     <Content Include="assets\admin\vendors\animate.css\animate.min.css" />
     <Content Include="assets\admin\vendors\animate.css\gulpfile.js" />
@@ -3873,6 +3876,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="ImgProductos\20180714205134.jpg" />
+    <Content Include="ImgProductos\20180715013507.jpg" />
+    <Content Include="ImgProductos\20180715031619.png" />
+    <Content Include="ImgProductos\20180715031629.png" />
+    <Content Include="ImgProductos\20180715031635.jpg" />
     <Content Include="Models\DataBase\Protume.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Protume.edmx</DependentUpon>
@@ -3907,11 +3915,6 @@
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Admin\Views\Productos\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Productos\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Productos\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Productos\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Productos\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Categorias\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Categorias\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Categorias\Details.cshtml" />
@@ -3922,13 +3925,7 @@
     <Content Include="Areas\Admin\Views\Clientes\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Clientes\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Clientes\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Proveedores\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Proveedores\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Proveedores\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Proveedores\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Proveedores\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Pedidos\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Pedidos\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Pedidos\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Pedidos\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Pedidos\Index.cshtml" />
@@ -4763,6 +4760,16 @@
     <Content Include="assets\admin\vendors\validator\README.md" />
     <Content Include="assets\admin\vendors\validator\validator.jquery.json" />
     <Content Include="Areas\Admin\Views\Shared\_PartialMenu.cshtml" />
+    <Content Include="Areas\Admin\Views\Articulos\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Articulos\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Articulos\Adjuntos.cshtml" />
+    <Content Include="Areas\Admin\Views\Articulos\AsignarProveedor.cshtml" />
+    <Content Include="Areas\Admin\Views\Articulos\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Articulos\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Proveedores\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Proveedores\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Proveedores\AsignarProducto.cshtml" />
+    <Content Include="Areas\Admin\Views\Articulos\AsignarImagen.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -4810,11 +4817,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_PartialMenu.cshtml" />
     <Content Include="Views\Shared\_PartialFooter.cshtml" />
-    <Content Include="Views\Productos\Create.cshtml" />
-    <Content Include="Views\Productos\Delete.cshtml" />
-    <Content Include="Views\Productos\Details.cshtml" />
-    <Content Include="Views\Productos\Edit.cshtml" />
     <Content Include="Views\Productos\Index.cshtml" />
+    <Content Include="Views\Tienda\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

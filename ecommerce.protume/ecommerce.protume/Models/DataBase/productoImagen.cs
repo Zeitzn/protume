@@ -15,11 +15,11 @@ namespace ecommerce.protume.Models.DataBase
     public partial class productoImagen
     {
         public int id { get; set; }
-        public int id_producto { get; set; }
         public string imagen { get; set; }
         public string titulo { get; set; }
         public string descripcion { get; set; }
+        public Nullable<int> id_detalle_producto { get; set; }
     
-        public virtual producto producto { get; set; }
+        public virtual detalleProducto detalleProducto { get; set; }
     }
 }

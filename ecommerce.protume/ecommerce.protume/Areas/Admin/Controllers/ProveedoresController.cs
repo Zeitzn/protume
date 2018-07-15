@@ -14,36 +14,19 @@ namespace ecommerce.protume.Areas.Admin.Controllers
     {
         private bd_comercioEntities db = new bd_comercioEntities();
 
-        // GET: Admin/Proveedores
+
         public ActionResult Index()
         {
-            return View(db.proveedor.ToList());
+            var proveedor = db.proveedor;
+            return View(proveedor.ToList());
         }
 
-        // GET: Admin/Proveedores/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            proveedor proveedor = db.proveedor.Find(id);
-            if (proveedor == null)
-            {
-                return HttpNotFound();
-            }
-            return View(proveedor);
-        }
-
-        // GET: Admin/Proveedores/Create
         public ActionResult Create()
         {
+            
             return View();
         }
 
-        // POST: Admin/Proveedores/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id,nombre,direccion,telefono")] proveedor proveedor)
@@ -55,10 +38,11 @@ namespace ecommerce.protume.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
+            
             return View(proveedor);
         }
 
-        // GET: Admin/Proveedores/Edit/5
+
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -70,12 +54,10 @@ namespace ecommerce.protume.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+          
             return View(proveedor);
         }
 
-        // POST: Admin/Proveedores/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,nombre,direccion,telefono")] proveedor proveedor)
@@ -86,33 +68,42 @@ namespace ecommerce.protume.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+          
             return View(proveedor);
         }
 
-        // GET: Admin/Proveedores/Delete/5
-        public ActionResult Delete(int? id)
+        
+
+        //Gestion de productos
+
+        public ActionResult AsignarProducto(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            proveedor proveedor = db.proveedor.Find(id);
-            if (proveedor == null)
-            {
-                return HttpNotFound();
-            }
-            return View(proveedor);
+            ViewBag.id_proveedor = new SelectList(db.proveedor.Where(x => x.id == id), "id", "nombre");
+            ViewBag.id_producto = new SelectList(db.producto, "id", "nombre");
+            ViewBag.ListaProductos = db.producto.ToList();
+
+            return View();
+
         }
 
-        // POST: Admin/Proveedores/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        [HttpPost]
+        public ActionResult AsignarProducto([Bind(Include = "id,id_producto,id_proveedor,precio,stock")] detalleProducto detalleProducto)
         {
-            proveedor proveedor = db.proveedor.Find(id);
-            db.proveedor.Remove(proveedor);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                db.detalleProducto.Add(detalleProducto);
+                db.SaveChanges();
+                //return RedirectToAction("Index");
+            }
+            ViewBag.id_proveedor = new SelectList(db.proveedor.Where(x => x.id == detalleProducto.id_proveedor), "id", "nombre");
+            ViewBag.ListaProductos = db.producto.ToList();
+            return View();
+        }
+
+        public ActionResult Details(int id)
+        {
+            var proveedor = db.detalleProducto.Where(x => x.id_proveedor == id).Include("producto").Include("proveedor");
+            return View(proveedor.ToList());
         }
 
         protected override void Dispose(bool disposing)

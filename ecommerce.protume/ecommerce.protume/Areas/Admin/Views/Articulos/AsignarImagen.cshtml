@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "Asignar Imagen";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="col-md-12">
+    @if (Model.id > 0)
+    {
+        using (Html.BeginForm("Adjuntar", "Articulos", FormMethod.Post, new { id = "frm-adjuntar" }))
+        {
+            <input type="hidden" name="ProductoId" value="@Model.id" />
+            <div class="row">
+                <div class="col-xs-10">
+                    <div class="form-group">
+                        <input type="file" name="documento" accept="image/x-png, image/gif, image/jpeg"
+                               @*accept="image/*"*@ />
+                    </div>
+                </div>
+                <div class="col-xs-2">
+                    <button type="submit" class="btn btn-primary btn-block">Adjuntar</button>
+                </div>
+            </div>
+        }
+        <div id="adjuntos-cargados">
+        </div>
+    }
+</div>
+
+<div class="col-md-12">
+    @Html.ActionLink("Regresar a la lista", "Index")
+</div>
+
+
+
+@section scriptsAdmin{
+
+    <script>
+
+
+        $(document).ready(function () {
+            @if (Model.id > 0)
+            {
+                <text>
+                    CargarAdjuntos();
+                </text>
+            }
+
+            $("#frm-adjuntar").submit(function () {
+                var form = $(this);
+                form.ajaxSubmit({
+                    dataType: 'JSON',
+                    type: 'POST',
+                    url: form.attr('action'),
+                    success: function (r) {
+                    if (r.respuesta) {
+                    CargarAdjuntos();
+                    }
+                    else {alert(r.error);}
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                    alert(errorThrown);
+                    }
+                });
+                return false;
+            })
+        });
+        function CargarAdjuntos() {
+        $("#adjuntos-cargados").load("@Url.Content("~/Admin/Articulos/adjuntos?ProductoId=" +Model.id)");
+        }
+    </script>
+
+}
+

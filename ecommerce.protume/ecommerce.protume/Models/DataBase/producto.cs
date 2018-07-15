@@ -18,7 +18,6 @@ namespace ecommerce.protume.Models.DataBase
         public producto()
         {
             this.detalleProducto = new HashSet<detalleProducto>();
-            this.productoImagen = new HashSet<productoImagen>();
         }
     
         public int id { get; set; }
@@ -31,7 +30,5 @@ namespace ecommerce.protume.Models.DataBase
         public virtual categoria categoria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<detalleProducto> detalleProducto { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<productoImagen> productoImagen { get; set; }
     }
 }

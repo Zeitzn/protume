@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ecommerce.protume.Models.DataBase.detalleProducto>
 
 @{
-    ViewBag.Title = "Detalles de Proveedor";
+    ViewBag.Title = "Detalles de Producto";
 }
 
 <h2>@ViewBag.Title</h2>
@@ -27,6 +27,7 @@
             <th>
                 PRECIO/Kg
             </th>
+            <th></th>
         </tr>
     </thead>
     <tfoot>
@@ -46,6 +47,7 @@
             <th>
                 PRECIO/Kg
             </th>
+            <th></th>
 
         </tr>
     </tfoot>
@@ -69,6 +71,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.precio)
+            </td>
+            <td>
+                @Html.ActionLink("Asignar Imagenes", "AsignarImagen", new { id = item.id })
             </td>
 
         </tr>

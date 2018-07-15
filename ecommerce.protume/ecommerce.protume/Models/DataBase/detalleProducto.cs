@@ -18,15 +18,20 @@ namespace ecommerce.protume.Models.DataBase
         public detalleProducto()
         {
             this.detallePedido = new HashSet<detallePedido>();
+            this.productoImagen = new HashSet<productoImagen>();
         }
     
         public int id { get; set; }
         public Nullable<int> id_producto { get; set; }
         public Nullable<int> id_proveedor { get; set; }
+        public string stock { get; set; }
+        public string precio { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<detallePedido> detallePedido { get; set; }
         public virtual producto producto { get; set; }
         public virtual proveedor proveedor { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<productoImagen> productoImagen { get; set; }
     }
 }

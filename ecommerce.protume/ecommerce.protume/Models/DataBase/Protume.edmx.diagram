@@ -5,21 +5,21 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="e90759c105e845d9bd00e39192e230f7" Name="Diagram1">
-        <EntityTypeShape EntityType="bd_comercioModel.categoria" Width="1.5" PointX="5" PointY="0.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="bd_comercioModel.cliente" Width="1.5" PointX="7.25" PointY="0.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="bd_comercioModel.detallePedido" Width="1.5" PointX="5.125" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="bd_comercioModel.detalleProducto" Width="1.5" PointX="2.875" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="bd_comercioModel.pedido" Width="1.5" PointX="7.25" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="bd_comercioModel.producto" Width="1.5" PointX="2.75" PointY="0.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="bd_comercioModel.productoImagen" Width="1.5" PointX="0.625" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="bd_comercioModel.proveedor" Width="1.5" PointX="0.625" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="bd_comercioModel.categoria" Width="1.5" PointX="6.625" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="bd_comercioModel.cliente" Width="1.5" PointX="8.875" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="bd_comercioModel.detallePedido" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bd_comercioModel.detalleProducto" Width="1.5" PointX="3.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bd_comercioModel.pedido" Width="1.5" PointX="8.875" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bd_comercioModel.producto" Width="1.5" PointX="3.75" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="bd_comercioModel.productoImagen" Width="1.5" PointX="0.5" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="bd_comercioModel.proveedor" Width="1.5" PointX="1.25" PointY="1.25" IsExpanded="true" />
         <AssociationConnector Association="bd_comercioModel.FK__producto__id_cat__25869641" ManuallyRouted="false" />
         <AssociationConnector Association="bd_comercioModel.FK__pedido__id_clien__32E0915F" ManuallyRouted="false" />
         <AssociationConnector Association="bd_comercioModel.FK__detallePe__id_de__4E88ABD4" ManuallyRouted="false" />
         <AssociationConnector Association="bd_comercioModel.FK__detallePe__id_pe__4D94879B" ManuallyRouted="false" />
         <AssociationConnector Association="bd_comercioModel.FK__detallePr__id_pr__49C3F6B7" ManuallyRouted="false" />
         <AssociationConnector Association="bd_comercioModel.FK__detallePr__id_pr__4AB81AF0" ManuallyRouted="false" />
-        <AssociationConnector Association="bd_comercioModel.FK__productoI__id_pr__286302EC" ManuallyRouted="false" />
+        <AssociationConnector Association="bd_comercioModel.fk_imagen_producto" ></AssociationConnector>
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
