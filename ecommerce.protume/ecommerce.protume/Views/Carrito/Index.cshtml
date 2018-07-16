@@ -1,0 +1,396 @@
+﻿
+@{
+    ViewBag.Title = "Carrito de Compras";
+    Layout = null;
+}
+
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>@ViewBag.Title - Protume</title>
+    @*@Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")*@
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- favicon
+    ============================================ -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/assets/img/logo/favicon.ico">
+
+    <!-- Google Fonts
+    ============================================ -->
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+
+    <!-- Bootstrap CSS
+    ============================================ -->
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
+    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome CSS
+    ============================================ -->
+    <link rel="stylesheet" href="~/assets/css/font-awesome.min.css">
+    <!-- Mean Menu CSS
+    ============================================ -->
+    <link rel="stylesheet" href="~/assets/css/meanmenu.min.css">
+    <!-- owl.carousel CSS
+    ============================================ -->
+    <link rel="stylesheet" href="~/assets/css/owl.carousel.css">
+    <link rel="stylesheet" href="~/assets/css/owl.theme.css">
+    <link rel="stylesheet" href="~/assets/css/owl.transitions.css">
+    <!-- nivo-slider css
+    ============================================ -->
+    <link rel="stylesheet" href="~/assets/css/nivo-slider.css">
+    <!-- Price slider css
+    ============================================ -->
+    <link rel="stylesheet" href="~/assets/css/jquery-ui-slider.css">
+    <!-- Simple Lence css
+    ============================================ -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/jquery.simpleLens.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/jquery.simpleGallery.css">
+    <!-- animate CSS
+    ============================================ -->
+    <link rel="stylesheet" href="~/assets/css/animate.css">
+    <!-- normalize CSS
+    ============================================ -->
+    <link rel="stylesheet" href="~/assets/css/normalize.css">
+    <!-- main CSS
+    ============================================ -->
+    <link rel="stylesheet" href="~/assets/css/main.css">
+    <!-- style CSS
+    ============================================ -->
+    <link href="~/assets/css/style.css" rel="stylesheet" />
+    <!-- responsive CSS
+    ============================================ -->
+    <link rel="stylesheet" href="~/assets/css/responsive.css">
+    <!-- modernizr JS
+    ============================================ -->
+    <script src="~/assets/js/vendor/modernizr-2.8.3.min.js"></script>
+
+    <!-- jquery
+    ============================================ -->
+    <script src="~/assets/js/vendor/jquery-1.11.3.min.js"></script>
+</head>
+<body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    @Html.Partial("_PartialMenu");
+    <!-- Cart Area -->
+    <div class="chart-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="cart-title">
+                        <h2>Carrito de Compras</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Cart Item -->
+                    <div class="chart-item table-responsive fix">
+                        <table class="col-md-12">
+                            <thead>
+                                <tr>
+                                    <th class="th-delate">Eliminar</th>
+                                    <th class="th-product">Imagenes</th>
+                                    <th class="th-details">Nombre del Producto</th>
+                                    <th class="th-edit">Editar</th>
+                                    <th class="th-price">Precio Unitario</th>
+                                    <th class="th-qty">Cantidad</th>
+                                    @*<th class="th-total">Subtotal</th>*@
+                                </tr>
+                            </thead>
+                            <tbody id="itemcarritoCompras">
+                                
+                                
+                            </tbody>
+                        </table>
+                    </div><!-- End Cart Item -->
+                    <div class="shoping-cart-button">
+                        <div class="cart-button-left">
+                            <a href='@Url.Action("Index","Tienda")'><button type="button" class="btn">Continuar Comprando</button></a>
+                        </div>
+                        <div class="cart-button-right">
+                            @*<button type="button" class="btn">Update Shopping Cart</button>*@
+                            <button type="button" class="btn">Limpiar Carrito de Compras</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <!-- Cart Shoping Area -->
+                <div class="cart-shopping-area fix">
+                    <div class="col-md-4 col-sm-12 pull-right">
+                        <div class="shopping-summary chart-all fix">
+                            <div class="shopping-cost-area">
+                                <div class="shopping-cost">
+                                    <div class="shopping-cost-right">                                       
+                                        <p><b id="totalCarrito">$2.010.00</b></p>
+                                    </div>
+                                    <div class="shopping-cost-left">                                      
+                                        <p><b>TOTAL</b> </p>
+                                    </div>
+                                </div>
+                                <div class="shiping-cart-button">
+                                    <a href='@Url.Action("Paso1","Compra")'> <button type="button" class="btn">Proceder a Pagar</button></a>
+</div>                               
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- End Cart Shoping Area -->
+            </div>
+        </div>
+    </div><!-- End Cart Area -->
+    <!-- Brand Logo area -->
+    <div class="brand-logo-area">
+        <div class="container">
+            <div class="brand-logo">
+                <div class="brand-logo-title">
+                    <h2>Logo brands</h2>
+                </div>
+                <div id="brands-logo" class="owl-carousel">
+                    <div class="single-brand-logo">
+                        <a href="#">
+                            <img src="img/brand-logo/blogo1.png" alt="logo">
+                        </a>
+                    </div>
+                    <div class="single-brand-logo">
+                        <a href="#">
+                            <img src="img/brand-logo/blogo5.png" alt="logo">
+                        </a>
+                    </div>
+                    <div class="single-brand-logo">
+                        <a href="#">
+                            <img src="img/brand-logo/blogo2.png" alt="logo">
+                        </a>
+                    </div>
+                    <div class="single-brand-logo">
+                        <a href="#">
+                            <img src="img/brand-logo/blogo3.png" alt="logo">
+                        </a>
+                    </div>
+                    <div class="single-brand-logo">
+                        <a href="#">
+                            <img src="img/brand-logo/blogo4.png" alt="logo">
+                        </a>
+                    </div>
+                    <div class="single-brand-logo">
+                        <a href="#">
+                            <img src="img/brand-logo/blogo1.png" alt="logo">
+                        </a>
+                    </div>
+                    <div class="single-brand-logo">
+                        <a href="#">
+                            <img src="img/brand-logo/blogo5.png" alt="logo">
+                        </a>
+                    </div>
+                    <div class="single-brand-logo">
+                        <a href="#">
+                            <img src="img/brand-logo/blogo3.png" alt="logo">
+                        </a>
+                    </div>
+                    <div class="single-brand-logo">
+                        <a href="#">
+                            <img src="img/brand-logo/blogo4.png" alt="logo">
+                        </a>
+                    </div>
+                    <div class="single-brand-logo">
+                        <a href="#">
+                            <img src="img/brand-logo/blogo2.png" alt="logo">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- End Brand Logo area -->
+    <!-- Footer area -->
+    <div class="footer-area">
+        <!-- Footer Top -->
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <!-- Footer Left -->
+                        <div class="footer-left">
+                            <!-- Footer Logog -->
+                            <div class="footer-logo">
+                                <a href="index.html"><img src="img/logo/logo-footer.png" alt="logo"></a>
+                            </div>
+                            <div class="footer-static-content">
+                                <p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram.</p>
+                            </div>
+                            <div class="footer-payment">
+                                <h2>Payments</h2>
+                                <ul>
+                                    <li><a href="#"><img src="img/logo/payment.png" alt="payment"></a></li>
+                                </ul>
+                            </div>
+                        </div><!-- End Footer Left -->
+                    </div>
+                    <div class="col-md-8 footer-right-col">
+                        <!-- Footer Right -->
+                        <div class="footer-right">
+                            <div class="footer-newsletter">
+                                <form action="#">
+                                    <h2>Newsletter</h2>
+                                    <input type="text" title="Sign up for our newsletter" required>
+                                    <button type="submit">Subscribe</button>
+                                </form>
+                            </div>
+                            <div class="information-link">
+                                <div class="single-information-link">
+                                    <h2>Informations</h2>
+                                    <ul>
+                                        <li><a href="#">Sitemap</a></li>
+                                        <li><a href="#">Privacy Policy</a></li>
+                                        <li><a href="#">Your Account</a></li>
+                                        <li><a href="#">Advanced Search</a></li>
+                                        <li><a href="#">Contact Us</a></li>
+                                    </ul>
+                                </div>
+                                <div class="single-information-link">
+                                    <h2>other static link</h2>
+                                    <ul>
+                                        <li><a href="#">Product Recall</a></li>
+                                        <li><a href="#">Gift Vouchers</a></li>
+                                        <li><a href="#">Returns and Exchanges</a></li>
+                                        <li><a href="#">Shipping Options</a></li>
+                                        <li><a href="#">Help & FAQs</a></li>
+                                    </ul>
+                                </div>
+                                <div class="single-information-link">
+                                    <h2> My account </h2>
+                                    <ul>
+                                        <li><a href="#">My orders</a></li>
+                                        <li><a href="#">My credit slips</a></li>
+                                        <li><a href="#">My addresses</a></li>
+                                        <li><a href="#">My personal info</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div><!-- End Footer Left -->
+                    </div>
+                </div>
+            </div>
+        </div><!-- End Footer Top -->
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="container">
+                <!-- Copyright -->
+                <div class="copyright">
+                    <p>Copyright &copy; <a href="http://bootexperts.com/">BootExperts</a> All Rights Reserved.</p>
+                </div>
+            </div>
+        </div><!-- End Footer Bottom -->
+    </div><!-- End Footer area -->
+    <script src="~/assets/js/bootstrap.min.js"></script>
+    <!-- nivo slider js
+    ============================================ -->
+    <script src="~/assets/js/jquery.nivo.slider.pack.js"></script>
+    <!-- Mean Menu js
+    ============================================ -->
+    <script src="~/assets/js/jquery.meanmenu.min.js"></script>
+    <!-- wow JS
+    ============================================ -->
+    <script src="~/assets/js/wow.min.js"></script>
+    <!-- price-slider JS
+    ============================================ -->
+    <script src="~/assets/js/jquery-price-slider.js"></script>
+    <!-- Simple Lence JS
+    ============================================ -->
+    <script type="text/javascript" src="~/assets/js/jquery.simpleGallery.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/jquery.simpleLens.min.js"></script>
+    <!-- owl.carousel JS
+    ============================================ -->
+    <script src="~/assets/js/owl.carousel.min.js"></script>
+    <!-- scrollUp JS
+    ============================================ -->
+    <script src="~/assets/js/jquery.scrollUp.min.js"></script>
+    <!-- jquery Collapse JS
+    ============================================ -->
+    <script src="~/assets/js/jquery.collapse.js"></script>
+    <!-- plugins JS
+    ============================================ -->
+    <script src="~/assets/js/plugins.js"></script>
+    <!-- main JS
+    ============================================ -->
+    <script src="~/assets/js/main.js"></script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+
+    @*@RenderSection("scripts", required: false)*@
+</body>
+</html>
+
+
+<script>
+    $(function () {
+        var carrito = localStorage.getItem("carrito");
+        var productos = [];
+        if (carrito != null) {
+            productos = JSON.parse(carrito);
+            CargarProductos(productos);
+        }
+    });
+    function CargarProductos(productos) {
+        var html = '';
+        var total = 0;
+
+        $.each(productos, function () {
+            total += this.Precio * this.Cantidad
+            //html += '<tr>' +
+            //    '            <td class="image"><img src="/ImgProductos/' + this.Imagen + '" alt="" width="124" height="124" /></td>' +
+            //    '            <td class="desc">' + this.Denominacion + ' &nbsp; <a title="Remove Item" class="icon-remove-sign" href="#"></a></td>' +
+            //    '            <td class="qty">' +
+            //    '                <input type="text" class="tiny-size" value="' + this.Cantidad + '" />' +
+            //    '           </td>' +
+            //    '           <td class="price">S/. ' + this.Precio + '</td>' +
+            //    '          </tr>'
+
+            html += '<tr>' +
+                '   <td class="th-delate"><a href="#">X</a></td>' +
+                '   <td class="th-product">' +
+                '   <a href="#"><img src="/ImgProductos/' + this.Imagen + '" alt="cart" width="100"></a>' +
+                '   </td>' +
+                '   <td class="th-details">' +
+                '       <h2><a href="#">' + this.Denominacion + '</a></h2>' +
+                '   </td>' +
+                '   <td class="th-edit"><a href="#">Edit</a></td>' +
+                '   <td class="th-price">S/  ' + this.Precio + '</td>' +
+                '   <td class="th-qty">' +
+                '   <input type="text" placeholder="' + this.Cantidad + '">' +
+                '   </td>';
+                //'   <td class="th-total">S/ ' + (parseInt(this.Cantidad) * parseFloat(this.precio)) + '</td>' +
+                //    '</tr>';
+        });
+                
+        $('#itemcarritoCompras').html(html);
+
+        //var totalCarrito = '<div class="shopping-cost">' +
+        //                '     <div class="shopping-cost-right">' +
+                      
+        //    '         <p><b>S/ ' + total + '</b></p>' +
+        //                '     </div>' +
+        //                '     <div class="shopping-cost-left">' +
+                        
+        //                '         <p><b>TOTAL</b> </p>' +
+        //                '     </div>' +
+        //                ' </div>' +
+        //                ' <div class="shiping-cart-button">' +
+        //                '     <button type="button" class="btn">Proceder a Pagar</button>' +
+        //                ' </div> ';
+
+        $("#totalCarrito").text('S/ ' + total);
+    }
+</script>
+
+
+
+
+
+
+

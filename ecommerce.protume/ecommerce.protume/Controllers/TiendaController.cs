@@ -21,6 +21,26 @@ namespace ecommerce.protume.Controllers
             return View(producto.ToList());
         }
 
+        public ActionResult Buscar(string p)
+        {
+            ViewBag.Parametro = p;
+            var producto = db.detalleProducto.Include("producto").Include("proveedor").Include("productoImagen").Where(x=>x.producto.nombre.Contains(p) || x.producto.descripcion.Contains(p));
+
+
+            return View(producto.ToList());
+        }
+
+        public ActionResult Categoria(string p)
+        {
+            ViewBag.Parametro = p;
+            var producto = db.detalleProducto.Include("producto").Include("proveedor").Include("productoImagen").Where(x => x.producto.categoria.nombre.Contains(p));
+
+
+            return View(producto.ToList());
+        }
+
+
+        //pendiente
         public JsonResult mostrarDetalles(int id)
         {
             db.Configuration.ProxyCreationEnabled = false;
