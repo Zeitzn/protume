@@ -2328,7 +2328,10 @@ h2.product-title a:hover{
 /*----------------------------------------
   17.5. Shop Product Right Tab
 ----------------------------------------*/
-.shop-product-right{}
+.shop-product-right{
+    margin-top:-110px;
+
+}
 .product-tab-area{}
 .product-tab-area .tab-bar{
 	border-top: 1px solid #c2c2c2;

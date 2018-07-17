@@ -40,15 +40,6 @@ namespace ecommerce.protume.Controllers
         }
 
 
-        //pendiente
-        public JsonResult mostrarDetalles(int id)
-        {
-            db.Configuration.ProxyCreationEnabled = false;
-            var detalleProducto = db.detalleProducto.Include("producto").Include("proveedor").Include("productoImagen").Where(x => x.id == id);
-            return new JsonResult { Data = detalleProducto, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
-
-            //return detalleProducto;
-
-        }
+       
     }
 }

@@ -32,31 +32,20 @@ namespace ecommerce.protume.Controllers
             return View(producto.ToList());
         }
 
-        //public JsonResult MostrarImagen(int id)
-        //{
-        //    var imagenes = db.productoImagen;
-        //    return Json(imagenes.ToList(),JsonRequestBehavior.AllowGet);
-        //}
+    
 
 
-        public ActionResult Details(int? id)
+        //pendiente
+        public ActionResult Detalles(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            producto producto = db.producto.Find(id);
-            if (producto == null)
-            {
-                return HttpNotFound();
-            }
-            return View(producto);
+            //db.Configuration.ProxyCreationEnabled = false;
+            var detallesProducto = db.detalleProducto.Include("producto").Include("proveedor").Include("productoImagen").Where(x => x.id == id).FirstOrDefault();
+
+            return View(detallesProducto);
+
         }
 
 
-
-
-        
 
         protected override void Dispose(bool disposing)
         {

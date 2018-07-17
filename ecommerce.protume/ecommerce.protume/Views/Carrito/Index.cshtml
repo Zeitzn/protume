@@ -389,7 +389,22 @@
 </script>
 
 
+<script>
+    function totalCarrito() {
+        var carrito = localStorage.getItem("carrito");
+        var productos = [];
+        if (carrito != null) {
+            productos = JSON.parse(carrito);
+        }
 
+        totalProductos = productos.length;
+
+        console.log(totalProductos);
+
+        $("#totalCart").html(totalProductos);
+    }
+    totalCarrito();
+</script>
 
 
 

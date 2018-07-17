@@ -91,6 +91,7 @@
                                     <li><a href='@Url.Action("Categoria", "Tienda", new { p = "Menestra" })'><i class="fa fa-plus-square-o"></i>Menestras <span>(15)</span></a></li>
                                     <li><a href='@Url.Action("Categoria", "Tienda", new { p = "Tuberculo" })'><i class="fa fa-plus-square-o"></i>Tubérculos <span>(15)</span></a></li>
                                     <li><a href='@Url.Action("Categoria", "Tienda", new { p = "Verdura" })'><i class="fa fa-plus-square-o"></i>Verduras <span>(15)</span></a></li>
+                                    <li><a href='@Url.Action("Index", "Tienda")'><i class="fa fa-plus-square-o"></i>Todos <span>(15)</span></a></li>
                                 </ul>
                             </div>
                         </div><!-- End Shop Layout Area -->
@@ -234,7 +235,22 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
 
+    <script>
+        function totalCarrito() {
+            var carrito = localStorage.getItem("carrito");
+            var productos = [];
+            if (carrito != null) {
+                productos = JSON.parse(carrito);
+            }
 
+            totalProductos = productos.length;
+
+            console.log(totalProductos);
+
+            $("#totalCart").html(totalProductos);
+        }
+        totalCarrito();
+    </script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

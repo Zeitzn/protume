@@ -242,7 +242,7 @@
                     url: '@Url.Action("RealizarPedido","Compra")',
                     data: carrito,
                     success: function () {
-                        alert(localStorage.length);
+                        
                         localStorage.removeItem("carrito");
                         window.location = '@Url.Action("Index","Tienda")';
                         

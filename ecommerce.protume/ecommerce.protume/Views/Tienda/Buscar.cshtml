@@ -7,59 +7,57 @@
 
 
 <div class="col-md-9 col-sm-12">
-    <!-- Shop Product Right -->
     <div class="shop-product-right">
-        <div class="product-tab-area">
-            <!-- Tab Bar -->
-            <div class="tab-bar">
-                @*<div class="tab-bar-inner">
-                        <ul class="nav nav-tabs" role="tablist">
-                            <li class="active"><a href="#shop-product" data-toggle="tab"><i class="fa fa-th-large"></i>Grid</a></li>
-                            <li><a href="#shop-list" data-toggle="tab"><i class="fa fa-th-list"></i>List</a></li>
-                        </ul>
-                    </div>*@
-                <div class="toolbar">
-                    <div class="sorter">
-                        <div class="sort-by">
-                            <label>Ordenar por</label>
-                            <select>
-                                <option value="position">Posición</option>
-                                <option value="name">Nombre</option>
-                                <option value="price">Precio</option>
-                            </select>
-                            <a href="#"><i class="fa fa-long-arrow-up"></i></a>
-                        </div>
-                    </div>
-                    <div class="pager-list">
-                        <div class="limiter">
-                            <label>Ver</label>
-                            <select>
-                                <option value="9">12</option>
-                                <option value="12">15</option>
-                                <option value="24">18</option>
-                                <option value="36">36</option>
-                            </select>
-                            por página
+        <!-- Fetured Product area -->
+        <div class="fetured-product-area brand-products c-carousel-button">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="fetured-products">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="products-head">
+                                    @*<div class="products-head-title">
+                                            <i class="fa fa-picture-o"></i>
+                                            <h2>Featured products</h2>
+                                        </div>*@
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div><!-- End Tab Bar -->
-            <!-- Tab Content -->
-            <div class="tab-content">
-                <div class="tab-pane active" id="shop-product">
-                    <div class="row tab-content-row">
-                        @foreach (var item in Model)
-                        {
+            </div>
+            <div class="row">
+                <!-- Fetured Product Carousel -->
+                <div id="feture-products" class="owl-carousel">
+                    @{
+                        int i = 1;
 
-                            var imag = @item.productoImagen.FirstOrDefault();
-                            string img = imag == null ? "no_disponible.jpg" : imag.imagen;
-                            <!-- Start Single Product Column -->
-                            <div class="col-md-4 col-sm-4">
+                        var a = "<div class='col-md-12 col-sm-12'>";
+                        var b = "</div>";
+                    }
+
+                    @foreach (var item in Model)
+                    {
+
+
+                        if (i == 1)
+                        {
+                            //var imag = @item.productoImagen.FirstOrDefault();
+                            //string img = imag == null ? "no_disponible.jpg" : imag.imagen;
+
+
+                            @Html.Raw(a)
+                        }
+
+
+
+                        <div class="col-lg-4 col-md-4">
+                            <div class="fiture-poroduct-single-item">
                                 <div class="single-product">
                                     <div class="single-product-img">
                                         <a href="#">
-                                            <img class="primary-img" src="~/ImgProductos/@img" alt="product">
-                                            <img class="secondary-img" src="~/ImgProductos/@img" alt="product">
+                                            <img class="primary-img" src="~/ImgProductos/@item.productoImagen.FirstOrDefault().imagen" alt="product">
+                                            @*<img class="secondary-img" src="~/ImgProductos/@img" alt="product">*@
                                         </a>
                                     </div>
                                     <div class="single-product-content">
@@ -70,50 +68,34 @@
                                         <div class="product-bottom-action">
                                             <div class="product-action">
                                                 <div class="action-button">
-                                                    <button class="btn" type="button" onclick="AgregarCarrito(@item.id,'@item.producto.nombre','@img',@item.precio)"><i class="fa fa-shopping-cart"></i> <span>Al carrito</span></button>
+                                                    <button class="btn" type="button" onclick="AgregarCarrito(@item.id,'@item.producto.nombre','@item.productoImagen.FirstOrDefault().imagen',@item.precio)"><i class="fa fa-shopping-cart"></i> <span>Al carrito</span></button>
                                                 </div>
                                                 <div class="action-view">
-                                                    <button type="button" class="btn" onclick="mostrarDetalles(@item.id)" @*data-toggle="modal" data-target="#productModal"*@><i class="fa fa-search"></i>Detalles</button>
+                                                    <button type="button" class="btn" onclick="mostrarDetalles(@item.id)"><i class="fa fa-search"></i>Detalles</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div><!-- End Single Product Column -->
-
-
-                        }
-                    </div>
-
-
-                </div>
-
-            </div><!-- End Tab Content -->
-            <!-- Tab Bar -->
-            <div class="tab-bar">
-                <div class="toolbar">
-                    <div class="sorter">
-                        <div class="sort-by">
-                            <label>Ordenar por</label>
-                            <select>
-                                <option value="position">Posición</option>
-                                <option value="name">Nombre</option>
-                                <option value="price">Precio</option>
-                            </select>
-                            <a href="#"><i class="fa fa-long-arrow-up"></i></a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="pages">
-                        <strong>Página:</strong>
-                        <ol>
-                            <li class="current">1</li>
-                            <li><a href="#">2</a></li>
-                            <li><a title="Next" href="#"><i class="fa fa-arrow-right"></i></a></li>
-                        </ol>
-                    </div>
-                </div>
-            </div><!-- End Tab Bar -->
-        </div>
+
+                        if (i == 9)
+                        {
+                            @Html.Raw(b)
+                            i = 0;
+                        }
+                        i++;
+                    }
+
+                </div><!-- End Fetured Products Carousel -->
+            </div>
+
+
+
+
+        </div><!-- End Fetured Product area -->
+
     </div><!-- End Shop Product Left -->
 </div>
 <!-- Brand Logo area -->

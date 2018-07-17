@@ -1,0 +1,233 @@
+﻿@model ecommerce.protume.Models.DataBase.detalleProducto
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<div class="col-md-9 col-sm-12">
+    <div class="shop-product-right">
+        <!-- Fetured Product area -->
+        <div class="fetured-product-area brand-products c-carousel-button">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="fetured-products">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="products-head">
+                                    <div class="products-head-title">
+                                        @*<i class="fa fa-picture-o"></i>*@
+                                        <h2>Detalles de @Model.producto.nombre</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+
+                            <div class="modal-body">
+                                <div class="modal-product">
+                                    <div class="product-images">
+                                        <div class="main-image images">
+                                            <img alt="product" src="~/ImgProductos/@Model.productoImagen.FirstOrDefault().imagen">
+                                        </div>
+                                    </div><!-- .product-images -->
+
+                                    <div class="product-info">
+                                        <h1>@Model.producto.nombre</h1>
+                                        <div class="price-box">
+                                            <p class="price"><span class="special-price"><span class="amount">S/ @Model.precio</span></span></p>
+                                        </div>
+                                        <label>Proveedor: </label><a href="product-details.html" class="see-all"> @Model.proveedor.nombre</a>
+                                        <div class="quick-add-to-cart">
+                                            <form method="post" class="cart">
+                                                <div class="add-to-box add-to-box2">
+                                                    <div class="add-to-cart">
+                                                        <div class="input-content">
+                                                            <label for="qty">Cantidad (Kg.):</label>
+                                                            @*<input type="button" value="-" onclick="var qty_el = document.getElementById('qty'); var qty = qty_el.value; if( !isNaN( qty ) &amp);&amp; qty &gt; 0 ) qty_el.value--;return false;" class="qty-decrease">*@
+                                                            <input type="text" name="qty" id="qty" maxlength="12" value="1" title="Qty" class="input-text qty">
+                                                            <input type="button" value="+" onclick="var qty_el = document.getElementById('qty'); var qty = qty_el.value; if( !isNaN( qty )) qty_el.value++;return false;" class="qty-increase">
+                                                        </div>
+                                                        <button class="btn" type="button" onclick="AgregarCarrito(@Model.id,'@Model.producto.nombre','@Model.productoImagen.FirstOrDefault().imagen',@Model.precio)"><span>Agregar al Carrito</span></button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="quick-desc">
+                                            @Model.producto.descripcion
+                                        </div>
+                                        <div class="social-sharing">
+                                            <div class="widget widget_socialsharing_widget">
+                                                <h3 class="widget-title-modal">Comparte el Producto</h3>
+                                                <ul class="social-icons">
+                                                    <li><a target="_blank" title="Facebook" href="#" class="facebook social-icon"><i class="fa fa-facebook"></i></a></li>
+                                                    <li><a target="_blank" title="Twitter" href="#" class="twitter social-icon"><i class="fa fa-twitter"></i></a></li>
+                                                    <li><a target="_blank" title="Pinterest" href="#" class="pinterest social-icon"><i class="fa fa-pinterest"></i></a></li>
+                                                    <li><a target="_blank" title="Google +" href="#" class="gplus social-icon"><i class="fa fa-google-plus"></i></a></li>
+                                                    <li><a target="_blank" title="LinkedIn" href="#" class="linkedin social-icon"><i class="fa fa-linkedin"></i></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div><!-- .product-info -->
+                                </div><!-- .modal-product -->
+                            </div><!-- .modal-body -->
+                        </div><!-- .modal-content -->
+                    </div><!-- .modal-dialog -->
+                </div>
+            </div>
+
+
+
+
+
+        </div><!-- End Fetured Product area -->
+
+    </div><!-- End Shop Product Left -->
+</div>
+
+
+@section scripts{
+
+    <script>
+        function mostrarDetalles(id) {
+
+            window.location = "Productos/Detalles/" + id;
+        }
+    </script>
+
+    <script>
+
+        $(function () {
+            var carrito = localStorage.getItem("carrito");
+            var productos = [];
+            if (carrito != null) {
+                productos = JSON.parse(carrito);
+                CargaCarrito(productos);
+            }
+        });
+
+        function AgregarCarrito(productoid, denominacion, imagen, precio) {
+
+
+            var carrito = localStorage.getItem("carrito");
+            var productos = [];
+            if (carrito != null) {
+                productos = JSON.parse(carrito);
+            }
+
+            var itemActual;
+            for (var i = 0; i < productos.length; i++) {
+                if (productos[i].ProductoId == productoid) {
+                    itemActual = productos[i];
+                }
+            }
+           
+            var cantidadDetalle = $("#qty").val();
+
+            if (!itemActual) {
+                productos.push({ ProductoId: productoid, Denominacion: denominacion, Precio: precio, Cantidad: parseInt(cantidadDetalle), Imagen: imagen });
+            } else {
+                itemActual.Cantidad = itemActual.Cantidad + parseInt(cantidadDetalle);
+            }
+
+            var jsonStr = JSON.stringify(productos);
+            localStorage.setItem("carrito", jsonStr);
+
+            CargaCarrito(productos);
+            totalCarrito();
+        }
+
+        function CargaCarrito(productos) {
+            //var html = '';
+            var html2 = '';
+            var total = 0;
+
+            $("#nroProductosCarrito").text('(' + productos.length + ')');
+
+            $.each(productos, function () {
+                total += this.Precio * this.Cantidad
+                //html += '<div class="item-in-cart clearfix">' +
+                //    '    <div class="image">' +
+                //    '             <img src="http://localhost/Admin/ImgProductos/' + this.Imagen + '"  width="124" height="124" alt="cart item" />' +
+                //    '           </div>' +
+                //    '           <div class="desc">' +
+                //    '                 <strong><a href="product.html">' + this.Denominacion + '</a></strong>' +
+                //    '                <span class="light-clr qty">Qty: ' + this.Cantidad + ' &nbsp;' +
+                //    '                       <a href="#" class="icon-remove-sign" title="Remove Item"></a>' +
+                //    '                    </span>' +
+                //    '                </div>' +
+                //    '                <div class="price">' +
+                //    '                   <strong>S/. ' + this.Precio + '</strong>' +
+                //    '               </div>' +
+                //    '           </div>';
+
+
+
+                html2 += '<li >' +
+                    ' <div class="cart-list">' +
+                    '     <div class="cart-list-item">' +
+                    '         <div class="cart-list-img">' +
+                    '             <a href="#"><img src="/ImgProductos/' + this.Imagen + '" alt="cart" width="70" height="100" /></a>' +
+                    '         </div>' +
+                    '         <div class="cart-content">' +
+                    '             <a href="#">' + this.Denominacion + '</a>' +
+                    '             <p>' + this.Cantidad + ' x <span>S/ ' + this.Precio + '</span></p>' +
+                    '         </div>' +
+                    '         <div class="cart-button">' +
+                    '             <a href="#"><i class="fa fa-pencil"></i></a>' +
+                    '             <a href="#"><i class="fa fa-times"></i></a>' +
+                    '         </div>' +
+                    '     </div>' +
+                    ' </div>'+
+                '</li>';
+                    //       ' <div class="cart-subtotal">' +
+                    //       '     <p>Subtotal: <span>$1,131.00</span></p>' +
+                    //       ' </div>' +
+                    //       ' <div class="cart-action">' +
+                    //       '     <button type="button" class="btn"><span>Pagar</span> <i class="fa fa-long-arrow-right"></i></button>' +
+                    //       ' </div>' +
+                    //'</li>';
+
+
+
+            });
+
+            html2 +=' <div class="cart-subtotal">' +
+                    '     <p>Subtotal: <span>$'+total+'</span></p>' +
+                    ' </div>' +
+                    ' <div class="cart-action">' +
+                    '     <a href="@Url.Action("Paso1", "Compra")"><button type="button" class="btn"><span>Pagar</span> <i class="fa fa-long-arrow-right"></i></button></a>' +
+                    ' </div>';
+
+            $('#itemcarrito').html(html2);
+
+            //$("#totalCompraCarrito,#totalCarrito").text('S/.' + total);
+
+        }
+
+    
+        //function totalCarrito() {
+        //    var carrito = localStorage.getItem("carrito");
+        //    var productos = [];
+        //    if (carrito != null) {
+        //        productos = JSON.parse(carrito);
+        //    }
+
+        //    totalProductos = productos.length;
+
+        //    console.log(totalProductos);
+
+        //    $("#totalCart").html(totalProductos);
+        //}
+        
+
+
+    </script>
+
+}

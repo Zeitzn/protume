@@ -5028,11 +5028,10 @@
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_PartialMenu.cshtml" />
     <Content Include="Views\Shared\_PartialFooter.cshtml" />
     <Content Include="Views\Productos\Index.cshtml" />
-    <Content Include="Views\Tienda\Index.cshtml" />
+    <Content Include="Views\Tienda\Index2.cshtml" />
     <Content Include="Views\Compra\Paso1.cshtml" />
     <Content Include="Views\Compra\Paso2.cshtml" />
     <Content Include="Views\Compra\Paso3.cshtml" />
@@ -5041,6 +5040,8 @@
     <Content Include="Views\Tienda\Categoria.cshtml" />
     <Content Include="Views\Shared\_PartialBreadCrumb.cshtml" />
     <Content Include="Views\Carrito\Index.cshtml" />
+    <Content Include="Views\Tienda\Index.cshtml" />
+    <Content Include="Views\Productos\Detalles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
