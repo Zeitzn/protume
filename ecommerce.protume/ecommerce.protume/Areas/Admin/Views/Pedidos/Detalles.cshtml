@@ -1,0 +1,87 @@
+﻿@model IEnumerable<ecommerce.protume.Models.DataBase.detallePedido>
+
+@{
+    ViewBag.Title = "Detalles del Pedido";
+}
+
+<h2>@ViewBag.Title</h2>
+<div class="col-md-12">
+    @Html.ActionLink("Volver a la lista", "Index")
+</div>
+<hr />
+<table class="table" id="tabla">
+    <thead>
+        <tr>
+            <th>
+                N°
+            </th>
+            <th>
+                PRODUCTO
+            </th>
+            <th>
+                CATEGORIA
+            </th>
+            <th>
+                PROVEEDOR
+            </th>
+            <th>
+                PRECIO (S/)
+            </th>
+            <th>
+                CANTIDAD (Kg.)
+            </th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>
+                N°
+            </th>
+            <th>
+                PRODUCTO
+            </th>
+            <th>
+                CATEGORIA
+            </th>
+            <th>
+                PROVEEDOR
+            </th>
+            <th>
+                PRECIO (S/)
+            </th>
+            <th>
+                CANTIDAD (Kg.)
+            </th>
+        </tr>
+    </tfoot>
+    @{
+        int i = 1;
+    }
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @i
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.detalleProducto.producto.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.detalleProducto.producto.categoria.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.detalleProducto.proveedor.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.detalleProducto.precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cantidad)
+            </td>
+
+
+        </tr>
+        i++;
+    }
+
+</table>

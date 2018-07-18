@@ -26,17 +26,17 @@
             <a href="#">Cerrar sesión </span></a>
         </li>*@
 
-                                        @if (!HttpContext.Current.User.Identity.IsAuthenticated)
+                                        @*@if (!HttpContext.Current.User.Identity.IsAuthenticated)
                                         {
                                             <li><a href="#loginModal" role="button" data-toggle="modal">Login</a></li>
                                             <li><text> o </text></li>
                                             <li><a href="#registerModal" role="button" data-toggle="modal"> Registrar </a></li>
-                                        }
-                                        else
-                                        {
-                                            <li><a href="#">Hola @ecommerce.protume.Controllers.AccountController.ObtenerNombreUsuario()</a></li>
+                                        }*@
+                                        @*else
+                                        {*@
+                                            @*<li><a href="#">Hola @ecommerce.protume.Controllers.AccountController.ObtenerNombreUsuario()</a></li>
                                             <li><text> o </text></li>
-                                            <li><a href="@Url.Action("Logout", "Home" )"> Cerrar Sesion </a></li>
+                                            <li><a href="@Url.Action("Logout", "Home" )"> Cerrar Sesion </a></li>*@
                                             <li>
                                                 <a href="#">Cuenta <span class="caret"></span></a>
                                                 <ul>
@@ -46,7 +46,7 @@
                                                     @*<li><a href="#">Ingresar</a></li>*@
                                                 </ul>
                                             </li>
-                                        }
+                                        @*}*@
                                         @*<li><a href="#">Hola @ecommerce.protume.Controllers.AccountController.ObtenerNombreUsuario()</a></li>*@
                                     </ul>
                                 </div>

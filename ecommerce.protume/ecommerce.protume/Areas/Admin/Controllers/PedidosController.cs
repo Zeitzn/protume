@@ -17,20 +17,21 @@ namespace ecommerce.protume.Areas.Admin.Controllers
         // GET: Admin/Pedidos
         public ActionResult Index()
         {
-            var detallePedido = db.detallePedido.Include(d => d.detalleProducto).Include(d => d.pedido).OrderByDescending(x => x.id);
+            var pedidos = db.pedido.Include(d => d.cliente).OrderByDescending(x => x.id);
 
             
-            return View(detallePedido.ToList());
+            return View(pedidos.ToList());
         }
 
-        // GET: Admin/Pedidos/Details/5
-         public ActionResult Details(int? id)
+        
+         public ActionResult Detalles(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            detallePedido detallePedido = db.detallePedido.Find(id);
+            var detallePedido = db.detallePedido.Where(x=>x.id_pedido==id).ToList();
+
             if (detallePedido == null)
             {
                 return HttpNotFound();
@@ -38,28 +39,32 @@ namespace ecommerce.protume.Areas.Admin.Controllers
             return View(detallePedido);
         }
 
-        public ActionResult Edit(int? id)
+        public ActionResult Editar(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            detallePedido detallePedido = db.detallePedido.Find(id);
-            if (detallePedido == null)
+            pedido pedid = db.pedido.Find(id);
+            if (pedid == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.id_detalle_producto = new SelectList(db.detalleProducto, "id", "id", detallePedido.id_detalle_producto);
-            ViewBag.id_pedido = new SelectList(db.pedido, "id", "estado", detallePedido.id_pedido);
-            return View(detallePedido);
+            
+            return View(pedid);
         }
 
        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id,string estado)
+        public ActionResult Editar(int id,string estado)
         {
-            return View();
+            var pedido = db.pedido.Find(id);
+
+            pedido.estado = estado;
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

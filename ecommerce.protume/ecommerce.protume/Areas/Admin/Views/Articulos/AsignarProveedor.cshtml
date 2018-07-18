@@ -84,9 +84,12 @@
                 <h4 class="modal-title">Proveedores</h4>
             </div>
             <div class="modal-body">
-                <table class="table">
+                <table class="table" id="tabla">
                     <thead>
                         <tr>
+                            <th>
+                                N°
+                            </th>
                             <th>
                                 NOMBRE
                             </th>
@@ -102,6 +105,9 @@
                     <tfoot>
                         <tr>
                             <th>
+                                N°
+                            </th>
+                            <th>
                                 NOMBRE
                             </th>
                             <th>
@@ -113,9 +119,15 @@
                             <th class="text-center">SELECCIONAR</th>
                         </tr>
                     </tfoot>
+                    @{
+                        int i = 1;
+                    }
                     @foreach (var item in ViewBag.ListaProveedores)
                     {
                         <tr>
+                            <td>
+                                @i
+                            </td>
                             <td>
                                 @item.nombre
                             </td>
@@ -129,6 +141,7 @@
                                 <a onclick="cargarProveedor(@item.id,'@item.nombre')" class="btn btn-info btn-xs glyphicon glyphicon-link"></a>
                             </td>
                         </tr>
+                        i++;
                     }
 
                 </table>

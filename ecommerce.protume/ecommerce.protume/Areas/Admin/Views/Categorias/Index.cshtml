@@ -7,11 +7,14 @@
 <h2>@ViewBag.Title</h2>
 
 <p>
-    @Html.ActionLink("Crear nuevo", "Create")
+    @Html.ActionLink("Agregar nuevo", "Create")
 </p>
-<table class="table">
+<table class="table" id="tabla">
     <thead>
         <tr>
+            <th>
+                N°
+            </th>
             <th>
                 NOMBRE
             </th>
@@ -24,6 +27,9 @@
     <tfoot>
         <tr>
             <th>
+                N°
+            </th>
+            <th>
                 NOMBRE
             </th>
             <th>
@@ -32,9 +38,15 @@
             <th></th>
         </tr>
     </tfoot>
+    @{
+        int i = 1;
+    }
     @foreach (var item in Model)
     {
         <tr>
+            <td>
+                @i
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.nombre)
             </td>
@@ -47,6 +59,7 @@
                 @Html.ActionLink("Eliminar", "Delete", new { id = item.id })
             </td>
         </tr>
+        i++;
     }
 
 </table>

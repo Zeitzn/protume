@@ -1,17 +1,17 @@
 ﻿@model ecommerce.protume.Models.DataBase.cliente
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalles";
 }
 
-<h2>Details</h2>
+<h2>@ViewBag.Title de Cliente</h2>
 
 <div>
-    <h4>cliente</h4>
+   
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.nombre)
+           Nombres
         </dt>
 
         <dd>
@@ -19,7 +19,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.apellidos)
+            Apellidos
         </dt>
 
         <dd>
@@ -27,7 +27,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.direccion)
+            Dirección
         </dt>
 
         <dd>
@@ -35,7 +35,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.direccion_envio)
+           Dirección de envío
         </dt>
 
         <dd>
@@ -43,7 +43,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.telefono)
+            Teléfono
         </dt>
 
         <dd>
@@ -51,24 +51,18 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.correo)
+            Correo Electrónico
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.correo)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.contrasena)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.contrasena)
-        </dd>
+        
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
+    
+    @Html.ActionLink("Volver a la lista", "Index")
 </p>

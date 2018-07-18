@@ -10,7 +10,7 @@ using ecommerce.protume.Models.DataBase;
 
 namespace ecommerce.protume.Areas.Admin.Controllers
 {
-    public class DetalleProductosController : Controller
+    public class DetallesProductosController : Controller
     {
         private bd_comercioEntities db = new bd_comercioEntities();
 

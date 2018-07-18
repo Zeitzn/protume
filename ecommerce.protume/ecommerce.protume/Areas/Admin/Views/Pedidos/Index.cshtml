@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ecommerce.protume.Models.DataBase.detallePedido>
+﻿@model IEnumerable<ecommerce.protume.Models.DataBase.pedido>
 
 @{
     ViewBag.Title = "Pedidos";
@@ -10,84 +10,117 @@
 @*<p>
         @Html.ActionLink("Create New", "Create")
     </p>*@
-<table class="table">
-    <tr>
-        <th>
-            N°
-        </th>
-        <th>
-            Producto
-        </th>
-        <th>
-            Nombres
-        </th>
-        <th>
-            Apellidos
-        </th>
-        <th>
-            Dirección de envío
-        </th>
-        <th>
-            Precio unitario
-        </th>
-        <th>
-            Cantidad
-        </th>
+<table class="table" id="tabla">
+    <thead>
+        <tr>
+            <th>
+                N°
+            </th>
+            <th>
+                NOMBRES
+            </th>
+            <th>
+                APELLIDOS
+            </th>
+            <th>
+                DIRECCIÓN
+            </th>
+            <th>
+                TELÉFONO
+            </th>
+            <th>
+                CORREO ELECTRÓNICO
+            </th>
 
-        <th>
-            Estado
-        </th>
+            <th>
+                FECHA DE PEDIDO
+            </th>
+            <th>
+                ESTADO DEL PEDIDO
+            </th>
 
-        <th></th>
-    </tr>
+            <th></th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>
+                N°
+            </th>
+            <th>
+                NOMBRES
+            </th>
+            <th>
+                APELLIDOS
+            </th>
+            <th>
+                DIRECCIÓN
+            </th>
+            <th>
+                TELÉFONO
+            </th>
+            <th>
+                CORREO ELECTRÓNICO
+            </th>
+
+            <th>
+                FECHA DE PEDIDO
+            </th>
+            <th>
+                ESTADO DEL PEDIDO
+            </th>
+
+            <th></th>
+        </tr>
+    </tfoot>
     @{
         int i = 1;
     }
     @foreach (var item in Model)
     {
         string estilo;
-        //if (item.pedido.estado == "Entregado")
-        //{
-        //    estilo = "green";
-        //}
-        //else if (item.pedido.estado == "En espera")
-        //{
-        //    estilo = "orange";
-        //}
-        //else
-        //{
-        //    estilo = "red";
-        //}
+        if (item.estado == "Entregado")
+        {
+            estilo = "green";
+        }
+        else if (item.estado == "En espera")
+        {
+            estilo = "red";
+        }
+        else
+        {
+            estilo = "orange";
+        }
         <tr>
             <td>
                 @i
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.detalleProducto.producto.nombre)
+                @Html.DisplayFor(modelItem => item.cliente.nombre)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.pedido.cliente.nombre)
+                @Html.DisplayFor(modelItem => item.cliente.apellidos)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.pedido.cliente.apellidos)
+                @Html.DisplayFor(modelItem => item.cliente.direccion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.pedido.cliente.direccion_envio)
+                @Html.DisplayFor(modelItem => item.cliente.telefono)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.detalleProducto.producto.precio)
+                @Html.DisplayFor(modelItem => item.cliente.correo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.cantidad)
+                @Html.DisplayFor(modelItem => item.fecha)
             </td>
-            <td @*style="color:@estilo"*@>
-                @Html.DisplayFor(modelItem => item.pedido.estado)
+            <td style="color:@estilo">
+                @Html.DisplayFor(modelItem => item.estado)
             </td>
 
 
             <td>
-                @Html.ActionLink("Editar", "Edit", new { id = item.id }) |
-                @Html.ActionLink("Detalles", "Details", new { id = item.id })
+                @Html.ActionLink("Editar", "Editar", new { id = item.id }) |
+                @Html.ActionLink("Detalles", "Detalles", new { id = item.id })
                 @*@Html.ActionLink("Delete", "Delete", new { id = item.id })*@
             </td>
         </tr>

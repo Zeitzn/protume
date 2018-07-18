@@ -1,69 +1,104 @@
 ﻿@model IEnumerable<ecommerce.protume.Models.DataBase.cliente>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Clientes";
 }
 
-<h2>Index</h2>
+<h2>Clientes</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Agregar nuevo", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.apellidos)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.direccion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.direccion_envio)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.telefono)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.correo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.contrasena)
-        </th>
-        <th></th>
-    </tr>
+<table class="table" id="tabla">
+    <thead>
+        <tr>
+            <th>
+                N°
+            </th>
+            <th>
+                NOMBRES
+            </th>
+            <th>
+                APELLIDOS
+            </th>
+            <th>
+                DIRECCIÓN
+            </th>
+            <th>
+                DIRECCIÓN DE ENVÍO
+            </th>
+            <th>
+                TELÉFONO
+            </th>
+            <th>
+                CORREO ELECTRÓNICO
+            </th>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.apellidos)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.direccion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.direccion_envio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.telefono)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.correo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.contrasena)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
+            <th></th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>
+                N°
+            </th>
+            <th>
+                NOMBRES
+            </th>
+            <th>
+                APELLIDOS
+            </th>
+            <th>
+                DIRECCIÓN
+            </th>
+            <th>
+                DIRECCIÓN DE ENVÍO
+            </th>
+            <th>
+                TELÉFONO
+            </th>
+            <th>
+                CORREO ELECTRÓNICO
+            </th>
+
+            <th></th>
+        </tr>
+    </tfoot>
+    @{
+        int i = 1;
+    }
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @i
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.apellidos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.direccion_envio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.correo)
+            </td>
+
+            <td>
+
+                @Html.ActionLink("Details", "Details", new { id = item.id })
+
+            </td>
+        </tr>
+        i++;
+    }
 
 </table>

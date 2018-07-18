@@ -9,7 +9,7 @@
 <p>
     @Html.ActionLink("Agregar", "Create")
 </p>
-<table class="table">
+<table class="table" id="tabla">
     <thead>
         <tr>
             <th>
@@ -66,7 +66,7 @@
                 
                 @Html.ActionLink("Editar", "Edit", new { id = item.id }) |
                 @Html.ActionLink("Asignar proveedor", "AsignarProveedor", new { id = item.id }) |
-                @Html.ActionLink("Detalles", "Details", new { id = item.id }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.id })
                
             </td>
         </tr>

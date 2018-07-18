@@ -135,7 +135,7 @@
                                     </div>
                                 </div>
                                 <div class="shiping-cart-button">
-                                    <a href='@Url.Action("Paso1","Compra")'> <button type="button" class="btn">Proceder a Pagar</button></a>
+                                    <a href='@Url.Action("Index","Compra")'> <button type="button" class="btn">Proceder a Pagar</button></a>
 </div>                               
                             </div>
                         </div>
@@ -342,14 +342,7 @@
 
         $.each(productos, function () {
             total += this.Precio * this.Cantidad
-            //html += '<tr>' +
-            //    '            <td class="image"><img src="/ImgProductos/' + this.Imagen + '" alt="" width="124" height="124" /></td>' +
-            //    '            <td class="desc">' + this.Denominacion + ' &nbsp; <a title="Remove Item" class="icon-remove-sign" href="#"></a></td>' +
-            //    '            <td class="qty">' +
-            //    '                <input type="text" class="tiny-size" value="' + this.Cantidad + '" />' +
-            //    '           </td>' +
-            //    '           <td class="price">S/. ' + this.Precio + '</td>' +
-            //    '          </tr>'
+          
 
             html += '<tr>' +
                 '   <td class="th-delate"><a href="#">X</a></td>' +
@@ -364,25 +357,11 @@
                 '   <td class="th-qty">' +
                 '   <input type="text" placeholder="' + this.Cantidad + '">' +
                 '   </td>';
-                //'   <td class="th-total">S/ ' + (parseInt(this.Cantidad) * parseFloat(this.precio)) + '</td>' +
-                //    '</tr>';
         });
                 
         $('#itemcarritoCompras').html(html);
 
-        //var totalCarrito = '<div class="shopping-cost">' +
-        //                '     <div class="shopping-cost-right">' +
-                      
-        //    '         <p><b>S/ ' + total + '</b></p>' +
-        //                '     </div>' +
-        //                '     <div class="shopping-cost-left">' +
-                        
-        //                '         <p><b>TOTAL</b> </p>' +
-        //                '     </div>' +
-        //                ' </div>' +
-        //                ' <div class="shiping-cart-button">' +
-        //                '     <button type="button" class="btn">Proceder a Pagar</button>' +
-        //                ' </div> ';
+
 
         $("#totalCarrito").text('S/ ' + total);
     }
