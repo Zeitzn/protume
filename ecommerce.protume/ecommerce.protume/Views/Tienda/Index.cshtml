@@ -40,22 +40,23 @@
                     @foreach (var item in Model)
                     {
 
+                        @*@item.productoImagen.FirstOrDefault().imagen
+                        > @item.producto.nombre
+                        @item.precio
+                            AgregarCarrito(@item.id, '@item.producto.nombre', '@item.productoImagen.FirstOrDefault().imagen', @item.precio)
+                            mostrarDetalles(@item.id)*@
 
                         if (i == 1)
                         {
 
                             @Html.Raw(a)
                         }
-
-
-
                         <div class="col-lg-4 col-md-4">
                             <div class="fiture-poroduct-single-item">
                                 <div class="single-product">
                                     <div class="single-product-img">
                                         <a href="#">
-                                            <img class="primary-img" src="~/ImgProductos/@item.productoImagen.FirstOrDefault().imagen" alt="product">
-                                           
+                                            <img class="primary-img" src="~/ImgProductos/@(item.productoImagen.FirstOrDefault() !=null? item.productoImagen.FirstOrDefault().imagen.ToString() : "no_disponible.jpg")" alt="product">
                                         </a>
                                     </div>
                                     <div class="single-product-content">
@@ -66,7 +67,7 @@
                                         <div class="product-bottom-action">
                                             <div class="product-action">
                                                 <div class="action-button">
-                                                    <button class="btn" type="button" onclick="AgregarCarrito(@item.id,'@item.producto.nombre','@item.productoImagen.FirstOrDefault().imagen',@item.precio)"><i class="fa fa-shopping-cart"></i> <span>Al carrito</span></button>
+                                                    <button class="btn" type="button" onclick=" AgregarCarrito(@item.id, '@item.producto.nombre', '@(item.productoImagen.FirstOrDefault() !=null? item.productoImagen.FirstOrDefault().imagen.ToString() : "no_disponible.jpg")', @item.precio)"><i class="fa fa-shopping-cart"></i> <span>Al carrito</span></button>
                                                 </div>
                                                 <div class="action-view">
                                                     <button type="button" class="btn" onclick="mostrarDetalles(@item.id)"><i class="fa fa-search"></i>Detalles</button>
@@ -96,68 +97,7 @@
 
     </div><!-- End Shop Product Left -->
 </div>
-<!-- Brand Logo area -->
-@*<div class="brand-logo-area">
-        <div class="container">
-            <div class="brand-logo">
-                <div class="brand-logo-title">
-                    <h2>Proveedores</h2>
-                </div>
-                <div id="brands-logo" class="owl-carousel">
-                    <div class="single-brand-logo">
-                        <a href="#">
-                            <img src="img/brand-logo/blogo1.png" alt="logo">
-                        </a>
-                    </div>
-                    <div class="single-brand-logo">
-                        <a href="#">
-                            <img src="img/brand-logo/blogo5.png" alt="logo">
-                        </a>
-                    </div>
-                    <div class="single-brand-logo">
-                        <a href="#">
-                            <img src="img/brand-logo/blogo2.png" alt="logo">
-                        </a>
-                    </div>
-                    <div class="single-brand-logo">
-                        <a href="#">
-                            <img src="img/brand-logo/blogo3.png" alt="logo">
-                        </a>
-                    </div>
-                    <div class="single-brand-logo">
-                        <a href="#">
-                            <img src="img/brand-logo/blogo4.png" alt="logo">
-                        </a>
-                    </div>
-                    <div class="single-brand-logo">
-                        <a href="#">
-                            <img src="img/brand-logo/blogo1.png" alt="logo">
-                        </a>
-                    </div>
-                    <div class="single-brand-logo">
-                        <a href="#">
-                            <img src="img/brand-logo/blogo5.png" alt="logo">
-                        </a>
-                    </div>
-                    <div class="single-brand-logo">
-                        <a href="#">
-                            <img src="img/brand-logo/blogo3.png" alt="logo">
-                        </a>
-                    </div>
-                    <div class="single-brand-logo">
-                        <a href="#">
-                            <img src="img/brand-logo/blogo4.png" alt="logo">
-                        </a>
-                    </div>
-                    <div class="single-brand-logo">
-                        <a href="#">
-                            <img src="img/brand-logo/blogo2.png" alt="logo">
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>*@<!-- End Brand Logo area -->
+
 
 
 @section scripts{
@@ -246,7 +186,7 @@
                     '     <p>Subtotal: <span>$'+total+'</span></p>' +
                     ' </div>' +
                     ' <div class="cart-action">' +
-                    '     <a href="@Url.Action("Paso1", "Compra")"><button type="button" class="btn"><span>Pagar</span> <i class="fa fa-long-arrow-right"></i></button></a>' +
+                    '     <a href="@Url.Action("Index", "Compra")"><button type="button" class="btn"><span>Pagar</span> <i class="fa fa-long-arrow-right"></i></button></a>' +
                     ' </div>';
 
             $('#itemcarrito').html(html2);

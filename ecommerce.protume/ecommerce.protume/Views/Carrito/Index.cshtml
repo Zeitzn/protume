@@ -94,7 +94,7 @@
                         <table class="col-md-12">
                             <thead>
                                 <tr>
-                                    <th class="th-delate">Eliminar</th>
+                                    @*<th class="th-delate">Eliminar</th>*@
                                     <th class="th-product">Imagenes</th>
                                     <th class="th-details">Nombre del Producto</th>
                                     <th class="th-edit">Editar</th>
@@ -115,7 +115,7 @@
                         </div>
                         <div class="cart-button-right">
                             @*<button type="button" class="btn">Update Shopping Cart</button>*@
-                            <button type="button" class="btn">Limpiar Carrito de Compras</button>
+                            <button type="button" class="btn" onclick="limpiarLocal()">Limpiar Carrito de Compras</button>
                         </div>
                     </div>
                 </div>
@@ -144,68 +144,7 @@
             </div>
         </div>
     </div><!-- End Cart Area -->
-    <!-- Brand Logo area -->
-    <div class="brand-logo-area">
-        <div class="container">
-            <div class="brand-logo">
-                <div class="brand-logo-title">
-                    <h2>Logo brands</h2>
-                </div>
-                <div id="brands-logo" class="owl-carousel">
-                    <div class="single-brand-logo">
-                        <a href="#">
-                            <img src="img/brand-logo/blogo1.png" alt="logo">
-                        </a>
-                    </div>
-                    <div class="single-brand-logo">
-                        <a href="#">
-                            <img src="img/brand-logo/blogo5.png" alt="logo">
-                        </a>
-                    </div>
-                    <div class="single-brand-logo">
-                        <a href="#">
-                            <img src="img/brand-logo/blogo2.png" alt="logo">
-                        </a>
-                    </div>
-                    <div class="single-brand-logo">
-                        <a href="#">
-                            <img src="img/brand-logo/blogo3.png" alt="logo">
-                        </a>
-                    </div>
-                    <div class="single-brand-logo">
-                        <a href="#">
-                            <img src="img/brand-logo/blogo4.png" alt="logo">
-                        </a>
-                    </div>
-                    <div class="single-brand-logo">
-                        <a href="#">
-                            <img src="img/brand-logo/blogo1.png" alt="logo">
-                        </a>
-                    </div>
-                    <div class="single-brand-logo">
-                        <a href="#">
-                            <img src="img/brand-logo/blogo5.png" alt="logo">
-                        </a>
-                    </div>
-                    <div class="single-brand-logo">
-                        <a href="#">
-                            <img src="img/brand-logo/blogo3.png" alt="logo">
-                        </a>
-                    </div>
-                    <div class="single-brand-logo">
-                        <a href="#">
-                            <img src="img/brand-logo/blogo4.png" alt="logo">
-                        </a>
-                    </div>
-                    <div class="single-brand-logo">
-                        <a href="#">
-                            <img src="img/brand-logo/blogo2.png" alt="logo">
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div><!-- End Brand Logo area -->
+   
     <!-- Footer area -->
     <div class="footer-area">
         <!-- Footer Top -->
@@ -217,15 +156,15 @@
                         <div class="footer-left">
                             <!-- Footer Logog -->
                             <div class="footer-logo">
-                                <a href="index.html"><img src="img/logo/logo-footer.png" alt="logo"></a>
+                                <a href="index.html"><img src="~/assets/img/logo/logo.png" alt="logo"></a>
                             </div>
                             <div class="footer-static-content">
                                 <p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram.</p>
                             </div>
                             <div class="footer-payment">
-                                <h2>Payments</h2>
+                                <h2>Pagos</h2>
                                 <ul>
-                                    <li><a href="#"><img src="img/logo/payment.png" alt="payment"></a></li>
+                                    <li><a href="#"><img src="~/assets/img/logo/payment.png" alt="payment"></a></li>
                                 </ul>
                             </div>
                         </div><!-- End Footer Left -->
@@ -234,11 +173,11 @@
                         <!-- Footer Right -->
                         <div class="footer-right">
                             <div class="footer-newsletter">
-                                <form action="#">
+                                @*<form action="#">
                                     <h2>Newsletter</h2>
                                     <input type="text" title="Sign up for our newsletter" required>
                                     <button type="submit">Subscribe</button>
-                                </form>
+                                </form>*@
                             </div>
                             <div class="information-link">
                                 <div class="single-information-link">
@@ -345,7 +284,7 @@
           
 
             html += '<tr>' +
-                '   <td class="th-delate"><a href="#">X</a></td>' +
+                //'   <td class="th-delate"><a href="#">X</a></td>' +
                 '   <td class="th-product">' +
                 '   <a href="#"><img src="/ImgProductos/' + this.Imagen + '" alt="cart" width="100"></a>' +
                 '   </td>' +
@@ -383,6 +322,13 @@
         $("#totalCart").html(totalProductos);
     }
     totalCarrito();
+
+
+    function limpiarLocal() {
+        localStorage.removeItem("carrito");
+        window.location.href = "/carrito";
+    }
+
 </script>
 
 

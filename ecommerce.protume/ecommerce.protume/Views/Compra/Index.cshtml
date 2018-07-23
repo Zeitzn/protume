@@ -1,4 +1,4 @@
-﻿
+﻿@model ecommerce.protume.Models.DataBase.cliente
 @{
     Layout = null;
 }
@@ -11,7 +11,7 @@
 <!--<![endif]-->
 <head>
     <meta charset="utf-8" />
-    <title>Webmarket HTML Template - Checkout Step 4</title>
+    <title>Compras - Protume</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="" />
     <meta name="author" content="ProteusThemes" />
@@ -91,45 +91,46 @@
                         <div class="control-group">
                             <label class="control-label" for="firstName">Nombres<span class="red-clr bold">*</span></label>
                             <div class="controls">
-                                <input type="text" id="firstName" class="span4" required="" />
+                                @*<input type="text" id="firstName" class="span4" required="" />*@
+                                @Html.EditorFor(model=>model.nombre, new { htmlAttributes = new { @class = "form-control" } })
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label" for="lastName">Apellidos<span class="red-clr bold">*</span></label>
                             <div class="controls">
-                                <input type="text" id="lastName" class="span4" required="" />
+                                @Html.EditorFor(model => model.apellidos, new { htmlAttributes = new { @class = "form-control" } })
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label" for="telephone">Teléfono<span class="red-clr bold">*</span></label>
                             <div class="controls">
-                                <input type="tel" id="telephone" class="span4" required="" />
+                                @Html.EditorFor(model => model.telefono, new { htmlAttributes = new { @class = "form-control" } })
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label" for="email">Email<span class="red-clr bold">*</span></label>
                             <div class="controls">
-                                <input type="email" id="email" class="span4" required="" />
+                                @Html.EditorFor(model => model.correo, new { htmlAttributes = new { @class = "form-control" } })
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label" for="addr1">Dirección 1<span class="red-clr bold">*</span></label>
                             <div class="controls">
-                                <input type="text" id="addr1" class="span4" required="" />
+                                @Html.EditorFor(model => model.direccion, new { htmlAttributes = new { @class = "form-control" } })
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label" for="addr2">Dirección 2</label>
                             <div class="controls">
-                                <input type="text" id="addr2" class="span4" />
+                                @Html.EditorFor(model => model.direccion_envio, new { htmlAttributes = new { @class = "form-control" } })
                             </div>
                         </div>
-                        <div class="control-group">
+                        @*<div class="control-group">
                             <label class="control-label" for="city">Ciudad<span class="red-clr bold">*</span></label>
                             <div class="controls">
                                 <input type="text" id="city" class="span4" />
                             </div>
-                        </div>
+                        </div>*@
                         <div class="control-group">
                             <label class="control-label" for="zip">Código Postal<span class="red-clr bold">*</span></label>
                             <div class="controls">
@@ -178,6 +179,7 @@
                     <div class="shifted-left-45 clearfix">
                         <h3 class="no-margin"><span class="light">Contra Entrega</span></h3>
                     </div>
+
 
                     <p class="right-align">
                         <button id="btnConfirmar" class="btn btn-primary higher bold">CONFIRMAR &amp; PAGAR</button>
@@ -290,12 +292,13 @@
         CargarProductos(productos);
     }
     $("#btnConfirmar").click(function () { 
-        alert(carrito);
+        //var tipoPago = $('input:radio[name=tipo]:checked').val();
+        //alert(carrito);
                 $.ajax({
                     type: 'POST',
                     dataType: 'json',
                     contentType: "application/json; charset=utf-8",
-                    url: '@Url.Action("RealizarPedido","Compra",new { id=1})',
+                    url: '@Url.Action("RealizarPedido","Compra",new { id=(Request.Cookies["userInfo"]["id"].ToString()),tipo="Contra Entrega"})',
                     data: carrito,
                     success: function () {
                         

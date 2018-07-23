@@ -33,5 +33,6 @@ namespace ecommerce.protume.Models.DataBase
         public virtual DbSet<producto> producto { get; set; }
         public virtual DbSet<productoImagen> productoImagen { get; set; }
         public virtual DbSet<proveedor> proveedor { get; set; }
+        public virtual DbSet<usuario> usuario { get; set; }
     }
 }

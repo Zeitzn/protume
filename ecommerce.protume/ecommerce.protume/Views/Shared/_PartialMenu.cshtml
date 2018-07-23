@@ -17,37 +17,31 @@
                             <div class="header-link-area">
                                
                                 <div class="header-link">
-                                    @*<p class="hidden-md hidden-sm hidden-xs">Currency: </p>*@
-                                    <ul>
-                                        @*<li class="hidden-md hidden-sm hidden-xs">
-            <a href="#">Nombre</a> |
-        </li>
-        <li class="hidden-md hidden-sm hidden-xs">
-            <a href="#">Cerrar sesión </span></a>
-        </li>*@
-
-                                        @*@if (!HttpContext.Current.User.Identity.IsAuthenticated)
+                                  
+                                    <ul>             
+                                     
+                                        @if(Request.Cookies["userInfo"]==null)
                                         {
                                             <li><a href="#loginModal" role="button" data-toggle="modal">Login</a></li>
                                             <li><text> o </text></li>
                                             <li><a href="#registerModal" role="button" data-toggle="modal"> Registrar </a></li>
-                                        }*@
-                                        @*else
-                                        {*@
-                                            @*<li><a href="#">Hola @ecommerce.protume.Controllers.AccountController.ObtenerNombreUsuario()</a></li>
-                                            <li><text> o </text></li>
-                                            <li><a href="@Url.Action("Logout", "Home" )"> Cerrar Sesion </a></li>*@
+                                        }
+                                        else
+                                        {
+                                            <li><a href="#">Hola @ecommerce.protume.Controllers.AccountController.ObtenerNombreUsuario(Request.Cookies["userInfo"]["id"].ToString())</a></li>
+                                            <li><text> | </text></li>
+                                            <li><a href="@Url.Action("Logout", "Account" )"> Cerrar Sesion </a></li>
                                             <li>
                                                 <a href="#">Cuenta <span class="caret"></span></a>
                                                 <ul>
-                                                    <li><a href="#">Mi cuenta</a></li>
+                                                    @*<li><a href="#">Mi cuenta</a></li>*@
                                                     <li><a href='@Url.Action("Index","Carrito")'>Mi carrito de compras</a></li>
-                                                    <li><a href='@Url.Action("Paso1","Compra")'>Pagar</a></li>
+                                                    <li><a href='@Url.Action("Index","Compra")'>Pagar</a></li>
                                                     @*<li><a href="#">Ingresar</a></li>*@
                                                 </ul>
                                             </li>
-                                        @*}*@
-                                        @*<li><a href="#">Hola @ecommerce.protume.Controllers.AccountController.ObtenerNombreUsuario()</a></li>*@
+                                        }
+                                        
                                     </ul>
                                 </div>
                             </div><!-- End Header Link Area -->
@@ -70,12 +64,14 @@
             </div>
         </div>
     </div><!-- End Header Top bar -->
+
+
     <!-- Header bottom -->
-    <div class="header-bottom">
+    @*<div class="header-bottom">
         <div class="container">
             <div class="row">
                 <div class="col-md-4 col-sm-12">
-                    <!-- Header Search -->
+                    
                     <div class="header-search">
                         <form action='@Url.Action("Buscar","Tienda")' method="get">
                             <input type="text" placeholder="BUSCAR..." name="p">
@@ -84,13 +80,13 @@
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-12">
-                    <!-- Header logo -->
+                   
                     <div class="header-logo">
                         <a href="~/"><img src="~/assets/img/logo/logo.png" alt="logo"></a>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-12">
-                    <!-- Header Cart Area-->
+                   
                     <div class="header-cart-area">
                         <div class="header-cart">
                             <ul>
@@ -101,95 +97,47 @@
                                         <span class="badge" id="totalCart">0</span>
                                     </a>
                                     <ul id="itemcarrito">
-                                        @*<li >
-                                            <div class="cart-list">
-                                                <div class="cart-list-item">
-                                                    <div class="cart-list-img">
-                                                        <a href="#"><img src="~/assets/img/cart/c1.jpg" alt="cart" /></a>
-                                                    </div>
-                                                    <div class="cart-content">
-                                                        <a href="#">Etiam gravida</a>
-                                                        <p>1 x <span>$432.00</span></p>
-                                                    </div>
-                                                    <div class="cart-button">
-                                                        <a href="#"><i class="fa fa-pencil"></i></a>
-                                                        <a href="#"><i class="fa fa-times"></i></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="cart-subtotal">
-                                                <p>Subtotal: <span>$1,131.00</span></p>
-                                            </div>
-                                            <div class="cart-action">
-                                                <button type="button" class="btn"><span>Pagar</span> <i class="fa fa-long-arrow-right"></i></button>
-                                            </div>*@
-
-
-                                        @*<div class="span3">
-                                                        <div class="cart-container" id="cartContainer">
-                                                            <div class="cart">
-                                                                <p class="items">CART <span id="nroProductosCarrito" class="dark-clr">(0)</span></p>
-                                                                <p id="totalCompraCarrito" class="dark-clr hidden-tablet">0.00</p>
-                                                                <a href="checkout-step-1.html" class="btn btn-danger">
-
-                                                                    <i class="icon-shopping-cart"></i>
-                                                                </a>
-                                                            </div>
-                                                            <div class="open-panel">
-                                                                <div id="itemcarrito"></div>
-
-                                                                <div class="summary">
-                                                                    <div class="line">
-                                                                        <div class="row-fluid">
-                                                                            <div class="span6">TOTAL:</div>
-                                                                            <div id="totalCarrito" class="span6 align-right size-16">0.00</div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="proceed">
-                                                                    <a href='@Url.Action("Paso1","Compra")' class="btn btn-danger pull-right bold higher">COMPRAR <i class="icon-shopping-cart"></i></a>
-                                                                    <small>Shipping costs are calculated based on location. <a href="#">More information</a></small>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-
-                                            </li>*@
+                                        
                                     </ul>
                                 </li>
                             </ul>
                         </div>
-                    </div><!-- End Header Cart Area-->
+                    </div>
                 </div>
             </div>
         </div>
-    </div><!-- End Header bottom -->
+    </div>*@
 </div><!-- End Header Area -->
+
+<br />
 <!-- Main Menu Area -->
 <div class="main-menu-area">
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-7">
                 <!-- Main Menu -->
                 <div class="main-menu hidden-sm hidden-xs">
-                    <nav>
+                    <nav class="pull-left">
                         <ul class="main-ul">
+
+                            <a href="~/"><img src="~/assets/img/logo/logo.png" alt="logo" width="200px"></a>
+
                             <li class="sub-menu-li">
-                                <a href="~/" class="active">Inicio@*<i class="fa fa-chevron-down"></i>*@</a>
-                                
+                                <a href="~/" class="active">Inicio</a>
+
                             </li>
                             <li>
-                                <a href="~/Tienda">@*<span class="label-menu">Sale</span>*@ Productos@*<i class="fa fa-chevron-down"></i>*@</a>
-                             
+                                <a href="~/Tienda"> Productos</a>
+
                             </li>
+                            <li>
+                                <a href="#"> Conócenos</a>
 
-
-
+                            </li>
 
                         </ul>
                     </nav>
+
                 </div><!-- End Main Menu -->
                 <!-- Start Mobile Menu -->
                 <div class="mobile-menu hidden-md hidden-lg">
@@ -203,12 +151,40 @@
                                 <a href="~/Tienda">Productos</a>
 
                             </li>
+                            <li>
+                                <a href="#"> Conócenos</a>
 
+                            </li>
 
 
                         </ul>
                     </nav>
                 </div><!-- End Mobile Menu -->
+            </div>
+            <div class="col-md-3">
+                <div class="header-search">
+                    <form action='@Url.Action("Buscar","Tienda")' method="get">
+                        <input type="text" placeholder="BUSCAR..." name="p">
+                        <button type="button" class="btn"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <!-- Header Cart Area-->
+                <div class="header-cart-area">
+                    <div class="header-cart">
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-shopping-cart"></i>
+                                    <span class="my-cart">Mi carrito</span>
+                                    <span class="badge" id="totalCart">0</span>
+                                </a>
+                                <ul id="itemcarrito"></ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div><!-- End Header Cart Area-->
             </div>
         </div>
     </div>

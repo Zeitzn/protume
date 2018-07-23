@@ -37,15 +37,18 @@ namespace ecommerce.protume.Controllers
         {
             bd.cliente.Add(c);
             bd.SaveChanges();
-            Helper.SessionHelper.AddUserToSession(c.id.ToString());
+            //Helper.SessionHelper.AddUserToSession(c.id.ToString());
             return RedirectToAction("Index", "Productos");
         }
 
-        public static string ObtenerNombreUsuario()
+        public static string ObtenerNombreUsuario(string id)
         {
-            using (var b = new Models.DataBase.bd_comercioEntities())
+            int ident = Convert.ToInt32(id);
+            using (var b = new bd_comercioEntities())
             {
-                return b.cliente.Find(Helper.SessionHelper.GetUser()).nombre;
+                //return b.cliente.Find(Helper.SessionHelper.GetUser()).nombre;
+                return b.cliente.Find(ident).nombre;
+                //return "ss";
             }
         }
 

@@ -38,6 +38,9 @@
             <th>
                 ESTADO DEL PEDIDO
             </th>
+            <th>
+                MÉTODO DE PAGO
+            </th>
 
             <th></th>
         </tr>
@@ -69,6 +72,9 @@
             <th>
                 ESTADO DEL PEDIDO
             </th>
+            <th>
+                MÉTODO DE PAGO
+            </th>
 
             <th></th>
         </tr>
@@ -91,39 +97,41 @@
         {
             estilo = "orange";
         }
-        <tr>
-            <td>
-                @i
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.cliente.nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.cliente.apellidos)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.cliente.direccion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.cliente.telefono)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.cliente.correo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fecha)
-            </td>
-            <td style="color:@estilo">
-                @Html.DisplayFor(modelItem => item.estado)
-            </td>
+    <tr>
+        <td>
+            @i
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cliente.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cliente.apellidos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cliente.direccion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cliente.telefono)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cliente.correo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha)
+        </td>
+        <td style="color:@estilo">
+            @Html.DisplayFor(modelItem => item.estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tipo_pago)
+        </td>
 
 
-            <td>
-                @Html.ActionLink("Editar", "Editar", new { id = item.id }) |
-                @Html.ActionLink("Detalles", "Detalles", new { id = item.id })
-                @*@Html.ActionLink("Delete", "Delete", new { id = item.id })*@
-            </td>
-        </tr>
+        <td>
+            @Html.ActionLink("Editar", "Editar", new { id = item.id }) |
+            @Html.ActionLink("Detalles", "Detalles", new { id = item.id })
+        </td>
+    </tr>
         i++;
     }
 

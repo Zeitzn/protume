@@ -17,7 +17,7 @@ namespace ecommerce.protume.Areas.Admin
             context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
-                new { action = "Index",Controller="Categorias", id = UrlParameter.Optional }
+                new { action = "Login",Controller="Seguridad", id = UrlParameter.Optional }
             );
         }
     }

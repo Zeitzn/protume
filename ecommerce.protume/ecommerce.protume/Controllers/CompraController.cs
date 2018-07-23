@@ -12,7 +12,15 @@ namespace ecommerce.protume.Controllers
         private bd_comercioEntities db = new bd_comercioEntities();
         public ActionResult Index()
         {
+            if (Request.Cookies["userInfo"] != null)
+            {
+                var id = Convert.ToInt32(Request.Cookies["userInfo"]["id"].ToString());
+                var client=db.cliente.Where(x => x.id == id).FirstOrDefault();
+                return View(client);
+            }
+
             return View();
+
         }
         public ActionResult Paso1()
         {
@@ -32,7 +40,7 @@ namespace ecommerce.protume.Controllers
         }
 
         [HttpPost]
-        public JsonResult RealizarPedido(List<PedidoProducto> p,int id)
+        public JsonResult RealizarPedido(List<PedidoProducto> p,int id,string tipo)
         {
             var fecha = DateTime.Now;
             string estado = "En espera";
@@ -41,7 +49,8 @@ namespace ecommerce.protume.Controllers
             {
                 id_cliente = id,
                 fecha = fecha,
-                estado = estado
+                estado = estado,
+                tipo_pago=tipo
             };
 
             db.pedido.Add(ped);

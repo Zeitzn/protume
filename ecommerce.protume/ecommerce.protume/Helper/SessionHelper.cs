@@ -17,7 +17,10 @@ namespace Helper
         }
         public static void DestroyUserSession()
         {
-            FormsAuthentication.SignOut();
+            //FormsAuthentication.SignOut();
+            HttpCookie myCookie = new HttpCookie("userInfo");
+            myCookie.Expires = DateTime.Now.AddDays(-1d);
+            HttpContext.Current.Response.Cookies.Add(myCookie);
         }
         public static int GetUser()
         {
@@ -34,18 +37,24 @@ namespace Helper
         }
         public static void AddUserToSession(string id)
         {
-            bool persist = true;
+            //bool persist = true;           
             //var cookie = FormsAuthentication.GetAuthCookie("usuario", persist);
-            var cookie = FormsAuthentication.GetAuthCookie("correo", persist);
 
-            cookie.Name = FormsAuthentication.FormsCookieName;
-            cookie.Expires = DateTime.Now.AddMonths(3);
+            //cookie.Name = FormsAuthentication.FormsCookieName;
+            //cookie.Expires = DateTime.Now.AddMonths(3);
 
-            var ticket = FormsAuthentication.Decrypt(cookie.Value);
-            var newTicket = new FormsAuthenticationTicket(ticket.Version, ticket.Name, ticket.IssueDate, ticket.Expiration, ticket.IsPersistent, id);
+            //var ticket = FormsAuthentication.Decrypt(cookie.Value);
+            //var newTicket = new FormsAuthenticationTicket(ticket.Version, ticket.Name, ticket.IssueDate, ticket.Expiration, ticket.IsPersistent, id);
 
-            cookie.Value = FormsAuthentication.Encrypt(newTicket);
-            HttpContext.Current.Response.Cookies.Add(cookie);
+            //cookie.Value = FormsAuthentication.Encrypt(newTicket);
+            //HttpContext.Current.Response.Cookies.Add(cookie);
+           
+
+            HttpCookie aCookie = new HttpCookie("userInfo");
+            aCookie.Values["id"] = id;
+            aCookie.Values["lastVisit"] = DateTime.Now.ToString();
+            aCookie.Expires = DateTime.Now.AddMonths(3);
+            HttpContext.Current.Response.Cookies.Add(aCookie);
         }
     }
 }

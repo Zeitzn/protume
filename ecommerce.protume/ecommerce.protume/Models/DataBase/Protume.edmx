@@ -53,6 +53,7 @@
           <Property Name="id_cliente" Type="int" Nullable="false" />
           <Property Name="fecha" Type="datetime" />
           <Property Name="estado" Type="varchar" MaxLength="20" />
+          <Property Name="tipo_pago" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="producto">
           <Key>
@@ -61,8 +62,6 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_categoria" Type="int" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="100" />
-          <Property Name="precio" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="stock" Type="int" />
           <Property Name="descripcion" Type="varchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="productoImagen">
@@ -81,6 +80,19 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="200" />
+          <Property Name="direccion" Type="varchar" MaxLength="500" />
+          <Property Name="telefono" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombres" Type="varchar" MaxLength="100" />
+          <Property Name="apellidos" Type="varchar" MaxLength="200" />
+          <Property Name="correo" Type="varchar" MaxLength="50" />
+          <Property Name="contrasena" Type="varchar" MaxLength="500" />
+          <Property Name="dni" Type="int" />
           <Property Name="direccion" Type="varchar" MaxLength="500" />
           <Property Name="telefono" Type="varchar" MaxLength="10" />
         </EntityType>
@@ -177,6 +189,7 @@
           <EntitySet Name="producto" EntityType="Self.producto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="productoImagen" EntityType="Self.productoImagen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="proveedor" EntityType="Self.proveedor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__detallePe__id_de__4E88ABD4" Association="Self.FK__detallePe__id_de__4E88ABD4">
             <End Role="detalleProducto" EntitySet="detalleProducto" />
             <End Role="detallePedido" EntitySet="detallePedido" />
@@ -268,6 +281,7 @@
           <Property Name="estado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="cliente" Relationship="Self.FK__pedido__id_clien__32E0915F" FromRole="pedido" ToRole="cliente" />
           <NavigationProperty Name="detallePedido" Relationship="Self.FK__detallePe__id_pe__4D94879B" FromRole="pedido" ToRole="detallePedido" />
+          <Property Name="tipo_pago" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="producto">
           <Key>
@@ -276,8 +290,6 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_categoria" Type="Int32" Nullable="false" />
           <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="precio" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="stock" Type="Int32" />
           <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="categoria" Relationship="Self.FK__producto__id_cat__25869641" FromRole="producto" ToRole="categoria" />
           <NavigationProperty Name="detalleProducto" Relationship="Self.FK__detallePr__id_pr__49C3F6B7" FromRole="producto" ToRole="detalleProducto" />
@@ -412,6 +424,7 @@
             <End Role="detalleProducto" EntitySet="detalleProducto" />
             <End Role="productoImagen" EntitySet="productoImagen" />
           </AssociationSet>
+          <EntitySet Name="usuario" EntityType="bd_comercioModel.usuario" />
         </EntityContainer>
         <Association Name="fk_imagen_producto">
           <End Type="bd_comercioModel.detalleProducto" Role="detalleProducto" Multiplicity="0..1" />
@@ -425,6 +438,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombres" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="apellidos" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="contrasena" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="dni" Type="Int32" />
+          <Property Name="direccion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -478,6 +504,7 @@
           <EntitySetMapping Name="pedido">
             <EntityTypeMapping TypeName="bd_comercioModel.pedido">
               <MappingFragment StoreEntitySet="pedido">
+                <ScalarProperty Name="tipo_pago" ColumnName="tipo_pago" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
@@ -491,8 +518,6 @@
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="precio" ColumnName="precio" />
-                <ScalarProperty Name="stock" ColumnName="stock" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -515,6 +540,20 @@
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="direccion" ColumnName="direccion" />
                 <ScalarProperty Name="telefono" ColumnName="telefono" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuario">
+            <EntityTypeMapping TypeName="bd_comercioModel.usuario">
+              <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="dni" ColumnName="dni" />
+                <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

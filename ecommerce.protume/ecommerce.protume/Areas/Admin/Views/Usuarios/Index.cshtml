@@ -1,0 +1,96 @@
+﻿@model IEnumerable<ecommerce.protume.Models.DataBase.usuario>
+
+@{
+    ViewBag.Title = "Usuarios";
+}
+
+<h2>Usuarios</h2>
+
+<p>
+    @Html.ActionLink("Agregar", "Create")
+</p>
+<table class="table" id="tabla">
+    <thead>
+        <tr>
+            <th>
+                NOMBRES
+            </th>
+            <th>
+                APELLIDOS
+            </th>
+            <th>
+                CORREO
+            </th>
+            <th>
+                CONTRASEÑA
+            </th>
+            <th>
+                DNI
+            </th>
+            <th>
+                DIRECCIÓN
+            </th>
+            <th>
+                TELÉFONO
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>
+                NOMBRES
+            </th>
+            <th>
+                APELLIDOS
+            </th>
+            <th>
+                CORREO
+            </th>
+            <th>
+                CONTRASEÑA
+            </th>
+            <th>
+                DNI
+            </th>
+            <th>
+                DIRECCIÓN
+            </th>
+            <th>
+                TELÉFONO
+            </th>
+            <th></th>
+        </tr>
+    </tfoot>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombres)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.apellidos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.correo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.contrasena)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dni)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telefono)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.id }) |              
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>

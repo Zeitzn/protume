@@ -20,6 +20,7 @@
         <AssociationConnector Association="bd_comercioModel.FK__detallePr__id_pr__49C3F6B7" ManuallyRouted="false" />
         <AssociationConnector Association="bd_comercioModel.FK__detallePr__id_pr__4AB81AF0" ManuallyRouted="false" />
         <AssociationConnector Association="bd_comercioModel.fk_imagen_producto" ></AssociationConnector>
+        <EntityTypeShape EntityType="bd_comercioModel.usuario" Width="1.5" PointX="5.75" PointY="6.125" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

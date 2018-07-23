@@ -1,0 +1,79 @@
+﻿@*@model Restaurant.Pedidos.Areas.Seguridad.Models.LoginViewModel*@
+@{
+    Layout = null;
+    ViewBag.Title = "Login";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link rel="icon" href="~/assets/admin/images/logo.ico" type="image/ico" />
+    <link rel="stylesheet" href="~/assets/admin/login/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/assets/admin/login/css/AdminLTE.min.css" />
+    <link href="~/assets/admin/login/css/loginStyle.css" rel="stylesheet" />
+    <script src="~/assets/admin/login/js/jquery.min.js"></script>
+</head>
+<body>
+    <div class="login-box">
+
+
+        <div class="login-box-body">
+
+            <div class="form-group text-center">
+
+                <a href="#">
+
+                    <img src="~/assets/img/logo/logo.png" class="img-responsive img-thumbnail logo">
+
+                </a>
+
+            </div>
+
+            <p class="login-box-msg"><b>Ingresar al sistema<span class=""></span></b></p>
+
+
+            <form method="post">
+
+
+                <div class="form-group">
+                    <div class="input-group">
+
+                        <span class="input-group-addon" style="color:#000000"><i class="glyphicon glyphicon-user"></i></span>
+
+                        <input type="text" class="form-control" id="txtUsuario" placeholder="Correo" required name="correo">
+
+                        @*@Html.TextBoxFor(model => model.usuario, new { id = "txtUsuario", @placeholder = "Usuario", @class = "form-control", @maxlength = 8 })*@
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+
+                        <span class="input-group-addon" style="color:#000000"><i class="glyphicon glyphicon-lock"></i></span>
+
+                        <input type="password" class="form-control" id="txtClave" placeholder="Contraseña" required name="contrasena">
+                        @*@Html.PasswordFor(model => model.clave, new { id = "txtClave", @placeholder = "Clave", @class = "form-control", @maxlength = 30 })*@
+
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <div class="control-group">
+
+                        <button id="btnIngresar" type="submit" class="btn btn-primary btn-block tip">Ingresar</button>
+
+                    </div>
+                </div>
+            </form>
+
+
+        </div>
+
+    </div>
+</body>
+</html>

@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- favicon
     ============================================ -->
-    <link rel="shortcut icon" type="image/x-icon" href="~/assets/img/logo/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="~/assets/admin/images/logo.ico">
     <link href="~/assets/css/login.css" rel="stylesheet" />
     <!-- Google Fonts
     ============================================ -->
@@ -89,16 +89,16 @@
                             </div>
                             <div class="layout-list">
                                 <ul>
-                                    <li><a href='@Url.Action("Categoria", "Tienda", new { p = "Cereal" })'><i class="fa fa-plus-square-o"></i>Cereales <span>(15)</span></a></li>
-                                    <li><a href='@Url.Action("Categoria", "Tienda", new { p = "Menestra" })'><i class="fa fa-plus-square-o"></i>Menestras <span>(15)</span></a></li>
-                                    <li><a href='@Url.Action("Categoria", "Tienda", new { p = "Tuberculo" })'><i class="fa fa-plus-square-o"></i>Tubérculos <span>(15)</span></a></li>
-                                    <li><a href='@Url.Action("Categoria", "Tienda", new { p = "Verdura" })'><i class="fa fa-plus-square-o"></i>Verduras <span>(15)</span></a></li>
-                                    <li><a href='@Url.Action("Index", "Tienda")'><i class="fa fa-plus-square-o"></i>Todos <span>(15)</span></a></li>
+                                    <li><a href='@Url.Action("Categoria", "Tienda", new { p = "Cereal" })'><i class="fa fa-plus-square-o"></i>Cereales </a></li>
+                                    <li><a href='@Url.Action("Categoria", "Tienda", new { p = "Menestra" })'><i class="fa fa-plus-square-o"></i>Menestras </a></li>
+                                    <li><a href='@Url.Action("Categoria", "Tienda", new { p = "Tuberculo" })'><i class="fa fa-plus-square-o"></i>Tubérculos </a></li>
+                                    <li><a href='@Url.Action("Categoria", "Tienda", new { p = "Verdura" })'><i class="fa fa-plus-square-o"></i>Verduras </a></li>
+                                    <li><a href='@Url.Action("Index", "Tienda")'><i class="fa fa-plus-square-o"></i>Todos </a></li>
                                 </ul>
                             </div>
                         </div><!-- End Shop Layout Area -->
                         <!-- Price Filter Area -->
-                        <div class="price-filter-area shop-layout-area">
+                        @*<div class="price-filter-area shop-layout-area">
                             <div class="price-filter">
                                 <div class="layout-title">
                                     <h2>Precio</h2>
@@ -109,7 +109,7 @@
                                 </p>
                                 <button class="btn btn-default">Filtrar</button>
                             </div>
-                        </div><!-- End Price Filter Area -->
+                        </div>*@<!-- End Price Filter Area -->
                     </div><!-- End Shop Product Left -->
                 </div>
                 @RenderBody()
@@ -148,11 +148,11 @@
                         <!-- Footer Right -->
                         <div class="footer-right">
                             <div class="footer-newsletter">
-                                <form action="#">
+                                @*<form action="#">
                                     <h2>Newsletter</h2>
                                     <input type="text" title="Sign up for our newsletter" required>
                                     <button type="submit">Subscribete</button>
-                                </form>
+                                </form>*@
                             </div>
                             <div class="information-link">
                                 <div class="single-information-link">
