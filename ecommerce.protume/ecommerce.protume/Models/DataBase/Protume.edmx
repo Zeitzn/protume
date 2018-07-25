@@ -25,6 +25,17 @@
           <Property Name="telefono" Type="varchar" MaxLength="10" />
           <Property Name="correo" Type="varchar" MaxLength="50" />
           <Property Name="contrasena" Type="varchar" MaxLength="500" />
+          <Property Name="puntos" Type="int" />
+        </EntityType>
+        <EntityType Name="comentario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_cliente" Type="int" />
+          <Property Name="id_detalle_producto" Type="int" />
+          <Property Name="fecha" Type="date" />
+          <Property Name="descripcion" Type="varchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="detallePedido">
           <Key>
@@ -96,6 +107,30 @@
           <Property Name="direccion" Type="varchar" MaxLength="500" />
           <Property Name="telefono" Type="varchar" MaxLength="10" />
         </EntityType>
+        <Association Name="FK__comentari__id_cl__02FC7413">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="0..1" />
+          <End Role="comentario" Type="Self.comentario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="comentario">
+              <PropertyRef Name="id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__comentari__id_de__03F0984C">
+          <End Role="detalleProducto" Type="Self.detalleProducto" Multiplicity="0..1" />
+          <End Role="comentario" Type="Self.comentario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="detalleProducto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="comentario">
+              <PropertyRef Name="id_detalle_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__detallePe__id_de__4E88ABD4">
           <End Role="detalleProducto" Type="Self.detalleProducto" Multiplicity="0..1" />
           <End Role="detallePedido" Type="Self.detallePedido" Multiplicity="*" />
@@ -183,6 +218,7 @@
         <EntityContainer Name="bd_comercioModelStoreContainer">
           <EntitySet Name="categoria" EntityType="Self.categoria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="cliente" EntityType="Self.cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="comentario" EntityType="Self.comentario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="detallePedido" EntityType="Self.detallePedido" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="detalleProducto" EntityType="Self.detalleProducto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="pedido" EntityType="Self.pedido" Schema="dbo" store:Type="Tables" />
@@ -190,6 +226,14 @@
           <EntitySet Name="productoImagen" EntityType="Self.productoImagen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="proveedor" EntityType="Self.proveedor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__comentari__id_cl__02FC7413" Association="Self.FK__comentari__id_cl__02FC7413">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="comentario" EntitySet="comentario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__comentari__id_de__03F0984C" Association="Self.FK__comentari__id_de__03F0984C">
+            <End Role="detalleProducto" EntitySet="detalleProducto" />
+            <End Role="comentario" EntitySet="comentario" />
+          </AssociationSet>
           <AssociationSet Name="FK__detallePe__id_de__4E88ABD4" Association="Self.FK__detallePe__id_de__4E88ABD4">
             <End Role="detalleProducto" EntitySet="detalleProducto" />
             <End Role="detallePedido" EntitySet="detallePedido" />
@@ -245,6 +289,8 @@
           <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="contrasena" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="pedido" Relationship="Self.FK__pedido__id_clien__32E0915F" FromRole="cliente" ToRole="pedido" />
+          <NavigationProperty Name="comentario" Relationship="bd_comercioModel.FK__comentari__id_cl__02FC7413" FromRole="cliente" ToRole="comentario" />
+          <Property Name="puntos" Type="Int32" />
         </EntityType>
         <EntityType Name="detallePedido">
           <Key>
@@ -270,6 +316,7 @@
           <Property Name="stock" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="precio" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="productoImagen" Relationship="bd_comercioModel.fk_imagen_producto" FromRole="detalleProducto" ToRole="productoImagen" />
+          <NavigationProperty Name="comentario" Relationship="bd_comercioModel.FK__comentari__id_de__03F0984C" FromRole="detalleProducto" ToRole="comentario" />
         </EntityType>
         <EntityType Name="pedido">
           <Key>
@@ -425,6 +472,15 @@
             <End Role="productoImagen" EntitySet="productoImagen" />
           </AssociationSet>
           <EntitySet Name="usuario" EntityType="bd_comercioModel.usuario" />
+          <EntitySet Name="comentario" EntityType="bd_comercioModel.comentario" />
+          <AssociationSet Name="FK__comentari__id_cl__02FC7413" Association="bd_comercioModel.FK__comentari__id_cl__02FC7413">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="comentario" EntitySet="comentario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__comentari__id_de__03F0984C" Association="bd_comercioModel.FK__comentari__id_de__03F0984C">
+            <End Role="detalleProducto" EntitySet="detalleProducto" />
+            <End Role="comentario" EntitySet="comentario" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="fk_imagen_producto">
           <End Type="bd_comercioModel.detalleProducto" Role="detalleProducto" Multiplicity="0..1" />
@@ -451,6 +507,42 @@
           <Property Name="direccion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="comentario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_cliente" Type="Int32" />
+          <Property Name="id_detalle_producto" Type="Int32" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="cliente" Relationship="bd_comercioModel.FK__comentari__id_cl__02FC7413" FromRole="comentario" ToRole="cliente" />
+          <NavigationProperty Name="detalleProducto" Relationship="bd_comercioModel.FK__comentari__id_de__03F0984C" FromRole="comentario" ToRole="detalleProducto" />
+          <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK__comentari__id_cl__02FC7413">
+          <End Type="bd_comercioModel.cliente" Role="cliente" Multiplicity="0..1" />
+          <End Type="bd_comercioModel.comentario" Role="comentario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="comentario">
+              <PropertyRef Name="id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__comentari__id_de__03F0984C">
+          <End Type="bd_comercioModel.detalleProducto" Role="detalleProducto" Multiplicity="0..1" />
+          <End Type="bd_comercioModel.comentario" Role="comentario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="detalleProducto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="comentario">
+              <PropertyRef Name="id_detalle_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -469,6 +561,7 @@
           <EntitySetMapping Name="cliente">
             <EntityTypeMapping TypeName="bd_comercioModel.cliente">
               <MappingFragment StoreEntitySet="cliente">
+                <ScalarProperty Name="puntos" ColumnName="puntos" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="apellidos" ColumnName="apellidos" />
@@ -553,6 +646,17 @@
                 <ScalarProperty Name="correo" ColumnName="correo" />
                 <ScalarProperty Name="apellidos" ColumnName="apellidos" />
                 <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="comentario">
+            <EntityTypeMapping TypeName="bd_comercioModel.comentario">
+              <MappingFragment StoreEntitySet="comentario">
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="id_detalle_producto" ColumnName="id_detalle_producto" />
+                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

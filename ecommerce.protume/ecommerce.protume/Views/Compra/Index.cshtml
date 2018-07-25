@@ -84,7 +84,7 @@
                         </div>
                     </div>
                 </div>
-            <hr />
+                <hr />
                 <div class="col-md-6">
 
                     <div class="form-horizontal form-checkout">
@@ -92,7 +92,7 @@
                             <label class="control-label" for="firstName">Nombres<span class="red-clr bold">*</span></label>
                             <div class="controls">
                                 @*<input type="text" id="firstName" class="span4" required="" />*@
-                                @Html.EditorFor(model=>model.nombre, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control" } })
                             </div>
                         </div>
                         <div class="control-group">
@@ -126,11 +126,11 @@
                             </div>
                         </div>
                         @*<div class="control-group">
-                            <label class="control-label" for="city">Ciudad<span class="red-clr bold">*</span></label>
-                            <div class="controls">
-                                <input type="text" id="city" class="span4" />
-                            </div>
-                        </div>*@
+                    <label class="control-label" for="city">Ciudad<span class="red-clr bold">*</span></label>
+                    <div class="controls">
+                        <input type="text" id="city" class="span4" />
+                    </div>
+                </div>*@
                         <div class="control-group">
                             <label class="control-label" for="zip">Código Postal<span class="red-clr bold">*</span></label>
                             <div class="controls">
@@ -167,35 +167,68 @@
                         </tr>
                     </table>
                     <hr />
-                    <span class="btn btn-danger circle pull-left">@*<i class="icon-chevron-right"></i>*@<input type="radio" name="tipo" value="paypal" checked /></span>
-                    <div class="shifted-left-45 clearfix">
-                        <h3 class="no-margin">
-                            <span class="light">PayPal</span> &nbsp; &nbsp; &nbsp;
-                            <a href="#"><img src="~/assets/compra/images/buttons/paypal.gif" alt="PayPal" width="145" height="42" /></a>
-                        </h3>
+                    <h3 class="text-danger"><strong>Método de Pago</strong></h3>
+                    <div>
+                        <input type="checkbox" id="monedero" /><label class="small">Usar el monedero </label>(<label class="small text-success">Se realizara un descuento del 10% a cambio de 100 monedas</label>)
                     </div>
                     <hr />
-                    <span class="btn btn-danger circle pull-left">@*<i class="icon-chevron-right"></i>*@<input type="radio" name="tipo" value="contraentrega" /></span>
-                    <div class="shifted-left-45 clearfix">
-                        <h3 class="no-margin"><span class="light">Contra Entrega</span></h3>
-                    </div>
+                    @*<span class="btn btn-danger circle pull-left">
+        <i class="icon-chevron-right"></i><input type="radio" name="tipo" value="paypal" checked /></span>
+                        <div class="shifted-left-45 clearfix">
+                            <h3 class="no-margin">
+                <span class="light">PayPal</span>
+                <a href="#"><img src="~/assets/compra/images/buttons/paypal.gif" alt="PayPal" width="145" height="42" /></a>
 
-
-                    <p class="right-align">
-                        <button id="btnConfirmar" class="btn btn-primary higher bold">CONFIRMAR &amp; PAGAR</button>
+            </h3>*@
+                    <div id="paypal-button"></div>
+                    <p class="">
+                        <button id="btnConfirmar" class="btn btn-primary higher bold">Contra Entrega</button>
                     </p>
+                   
                 </div>
-            </section> <!-- /main content -->
+                <hr />
+
+
+            </section>                        
+        </div>
+             <!-- /main content -->
 
         </div>
 
+        @* PAYPAAAAAAAAAAAAAAAAL *@
+        @*<div id="paypal-button"></div>*@
+        <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+        @*<script>
+            paypal.Button.render({
+                env: 'sandbox',
+                client: {
+                    sandbox: 'ATE1I1bdmwhyyxKZb3Rr0UyWDSUKEVtrqSzkmrVcMmuMJV77DQXK8yW8MXBVo1t14_TTX4qA_raMKW-A'
+                },
+                payment: function (data, actions) {
+                    return actions.payment.create({
+                        transactions: [{
+                            amount: {
+                                total: '500.00',
+                                currency: 'USD'
+                            }
+                        }]
+                    });
+                },
+                onAuthorize: function (data, actions) {
+                    return actions.payment.execute()
+                        .then(function () {
+                            window.alert('Gracias por sucompra!');
+                        });
+                }
+            }, '#paypal-button');
+        </script>*@
+
+
+        @* END PAYPAAAAAAAAAAAL *@
 
 
 
-
-
-
-    </div> <!-- /container -->
+    <!-- /container -->
     <!--  ==========  -->
     <!--  = JavaScript =  -->
     <!--  ==========  -->
@@ -281,7 +314,95 @@
         $('#itemcarrito').html(html);
 
         $("#totalCompra").text('S/.' + total);
+
+
+
     }
+
+    //BOTON DE PAYPAL
+
+    $(function () {
+        var totalPaypal = $("#totalCompra").text().substr(3) + ".00";
+        var _totalPaypal = totalPaypal;
+        var descuento="no"
+
+        $('#monedero').on("change", function () {
+            if ($(this).is(":checked")) {
+                _totalPaypal = totalPaypal - (totalPaypal) / 100;
+                descuento = "si";
+
+            } else {
+                _totalPaypal = totalPaypal;
+                descuento = "no";
+            }
+        })
+
+
+        //if ($('#monedero').is(':checked')) {
+        //    totalPaypal = totalPaypal - (totalPaypal) / 100;
+        //}
+        //alert(totalPaypal - (totalPaypal) / 100);
+
+
+    paypal.Button.render({
+        env: 'sandbox',
+        client: {
+            sandbox: 'ATE1I1bdmwhyyxKZb3Rr0UyWDSUKEVtrqSzkmrVcMmuMJV77DQXK8yW8MXBVo1t14_TTX4qA_raMKW-A'
+        },
+        payment: function (data, actions) {
+            return actions.payment.create({
+                transactions: [{
+                    amount: {
+                        //total: '500.00',
+                        total: _totalPaypal,
+                        currency: 'USD'
+                    }
+                }]
+            });
+        },
+        onAuthorize: function (data, actions) {
+            return actions.payment.execute()
+                .then(function () {
+                    if (descuento=="si") {
+
+                        $.ajax({
+                            type: 'POST',
+                            dataType: 'json',
+                            contentType: "application/json; charset=utf-8",
+                            url: '@Url.Action("RealizarPedido","Compra",new { id=(Request.Cookies["userInfo"]["id"].ToString()),tipo="PayPalMoneda"})',
+                            data: carrito,
+                            success: function () {
+                                window.alert('¡Gracias por su compra!');
+                                localStorage.removeItem("carrito");
+                                window.location = '@Url.Action("Index","Tienda")';
+
+                            }
+                        });
+                    } else {
+                        $.ajax({
+                                type: 'POST',
+                                dataType: 'json',
+                                contentType: "application/json; charset=utf-8",
+                                url: '@Url.Action("RealizarPedido","Compra",new { id=(Request.Cookies["userInfo"]["id"].ToString()),tipo="PayPalPedido"})',
+                                data: carrito,
+                                success: function () {
+                                    window.alert('¡Gracias por su compra!');
+                                    localStorage.removeItem("carrito");
+                                    window.location = '@Url.Action("Index","Tienda")';
+
+                                }
+                            });
+                    }
+                    @*window.alert('¡Gracias por su compra!');
+                    localStorage.removeItem("carrito");
+                    window.location = '@Url.Action("Index","Tienda")';*@
+                });
+        }
+        }, '#paypal-button');
+    });
+    //FIN BOTON DE PAYPAL
+
+
 
 
 
@@ -291,22 +412,38 @@
         productos = JSON.parse(carrito);
         CargarProductos(productos);
     }
-    $("#btnConfirmar").click(function () { 
-        //var tipoPago = $('input:radio[name=tipo]:checked').val();
-        //alert(carrito);
-                $.ajax({
+    $("#btnConfirmar").click(function () {
+        if ($('#monedero').is(':checked')) {
+
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                contentType: "application/json; charset=utf-8",
+                url: '@Url.Action("RealizarPedido","Compra",new { id=(Request.Cookies["userInfo"]["id"].ToString()),tipo="Contra EntregaMoneda"})',
+                data: carrito,
+                success: function () {
+                    window.alert('¡Gracias por su compra!');
+                    localStorage.removeItem("carrito");
+                    window.location = '@Url.Action("Index","Tienda")';
+
+                }
+            });
+        } else {
+            $.ajax({
                     type: 'POST',
                     dataType: 'json',
                     contentType: "application/json; charset=utf-8",
-                    url: '@Url.Action("RealizarPedido","Compra",new { id=(Request.Cookies["userInfo"]["id"].ToString()),tipo="Contra Entrega"})',
+                    url: '@Url.Action("RealizarPedido","Compra",new { id=(Request.Cookies["userInfo"]["id"].ToString()),tipo="Contra EntregaPedido"})',
                     data: carrito,
                     success: function () {
-                        
+                        window.alert('¡Gracias por su compra!');
                         localStorage.removeItem("carrito");
                         window.location = '@Url.Action("Index","Tienda")';
-                        
+
                     }
                 });
+        }
+
 
 	});
 </script>

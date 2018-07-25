@@ -40,11 +40,7 @@
                     @foreach (var item in Model)
                     {
 
-                        @*@item.productoImagen.FirstOrDefault().imagen
-                        > @item.producto.nombre
-                        @item.precio
-                            AgregarCarrito(@item.id, '@item.producto.nombre', '@item.productoImagen.FirstOrDefault().imagen', @item.precio)
-                            mostrarDetalles(@item.id)*@
+                       
 
                         if (i == 1)
                         {
@@ -107,7 +103,7 @@
 
                 window.location = "Productos/Detalles/"+id;
             }
-        </script>
+    </script>
 
     <script>
 

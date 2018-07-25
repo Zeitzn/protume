@@ -33,7 +33,7 @@ namespace ecommerce.protume.Controllers
             return RedirectToAction("Index", "Productos");
         }
 
-        public ActionResult RegistrarCliente(Models.DataBase.cliente c)
+        public ActionResult RegistrarCliente(cliente c)
         {
             bd.cliente.Add(c);
             bd.SaveChanges();
@@ -48,6 +48,16 @@ namespace ecommerce.protume.Controllers
             {
                 //return b.cliente.Find(Helper.SessionHelper.GetUser()).nombre;
                 return b.cliente.Find(ident).nombre;
+                //return "ss";
+            }
+        }
+        public static string ObtenerMonedasUsuario(string id)
+        {
+            int ident = Convert.ToInt32(id);
+            using (var b = new bd_comercioEntities())
+            {
+                //return b.cliente.Find(Helper.SessionHelper.GetUser()).nombre;
+                return b.cliente.Find(ident).puntos.ToString();
                 //return "ss";
             }
         }

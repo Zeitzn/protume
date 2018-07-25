@@ -18,6 +18,7 @@ namespace ecommerce.protume.Models.DataBase
         public cliente()
         {
             this.pedido = new HashSet<pedido>();
+            this.comentario = new HashSet<comentario>();
         }
     
         public int id { get; set; }
@@ -28,8 +29,11 @@ namespace ecommerce.protume.Models.DataBase
         public string telefono { get; set; }
         public string correo { get; set; }
         public string contrasena { get; set; }
+        public Nullable<int> puntos { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<pedido> pedido { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<comentario> comentario { get; set; }
     }
 }

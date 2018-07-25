@@ -38,11 +38,29 @@ namespace ecommerce.protume.Controllers
         //pendiente
         public ActionResult Detalles(int id)
         {
-            //db.Configuration.ProxyCreationEnabled = false;
-            var detallesProducto = db.detalleProducto.Include("producto").Include("proveedor").Include("productoImagen").Where(x => x.id == id).FirstOrDefault();
-
+            var detallesProducto = db.detalleProducto.Include("producto").Include("proveedor").Include("productoImagen").Where(x => x.id == id).FirstOrDefault();           
+            ViewBag.Comentarios = db.comentario.Include("detalleProducto").Include("cliente").Where(x => x.id_detalle_producto == id).OrderByDescending(x=>x.id);
             return View(detallesProducto);
 
+        }
+
+        public string Comentario(int id_cliente,int id_detalle_producto,string descripcion)
+        {
+
+            db.comentario.Add(
+                new comentario
+                {
+                    id_cliente=id_cliente,
+                    id_detalle_producto=id_detalle_producto,
+                    descripcion=descripcion,
+                    fecha=DateTime.Now
+                }
+                
+                );
+
+            db.SaveChanges();
+
+            return "success";
         }
 
 

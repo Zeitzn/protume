@@ -22,43 +22,38 @@ namespace ecommerce.protume.Controllers
             return View();
 
         }
-        public ActionResult Paso1()
-        {
-            return View();
-        }
-        public ActionResult Paso2()
-        {
-            return View();
-        }
-        public ActionResult Paso3()
-        {
-            return View();
-        }
-        public ActionResult Paso4()
-        {
-            return View();
-        }
-
+        
         [HttpPost]
         public JsonResult RealizarPedido(List<PedidoProducto> p,int id,string tipo)
         {
             var fecha = DateTime.Now;
-            string estado = "En espera";
+            string estado="En Espera";
 
-            pedido ped = new pedido
+            pedido ped = new pedido();
+
+            if (tipo== "Contra EntregaPedido" || tipo == "Contra EntregaMoneda")
             {
-                id_cliente = id,
-                fecha = fecha,
-                estado = estado,
-                tipo_pago=tipo
-            };
+                ped.id_cliente = id;
+                ped.fecha = fecha;
+                ped.estado = estado;
+                ped.tipo_pago = "Contra Entrega";
+            }
+            else
+            {
+                ped.id_cliente = id;
+                ped.fecha = fecha;
+                ped.estado = estado;
+                ped.tipo_pago = "PayPal";
+            }
+
+            
 
             db.pedido.Add(ped);
             db.SaveChanges();
 
             var ultimoRegistro = db.pedido.Where(x => x.id_cliente == id).OrderByDescending(x => x.id).FirstOrDefault();
             int idPedido = ultimoRegistro.id;
-            
+                        
             foreach (var item in p)
             {
                 db.detallePedido.Add(new detallePedido
@@ -68,9 +63,35 @@ namespace ecommerce.protume.Controllers
                     cantidad=item.Cantidad
 
                 });
-                
+
+               var dp= db.detalleProducto.Where(x => x.id == item.ProductoId).FirstOrDefault();
+                var stockActual = Convert.ToInt32(dp.stock);
+                var stockNuevo = stockActual-item.Cantidad;
+
+                dp.stock = stockNuevo.ToString();
+
+
+                db.SaveChanges();
+
             }
-            db.SaveChanges();
+            
+            if (tipo=="Contra EntregaPedido" || tipo=="PayPalPedido")
+            {
+                var client = db.cliente.Where(x => x.id == id).FirstOrDefault();
+                int? points = client.puntos;
+                client.puntos = points + 10;
+
+                db.SaveChanges();
+            }
+            else
+            {
+                var client = db.cliente.Where(x => x.id == id).FirstOrDefault();
+                int? points = client.puntos;
+                client.puntos = points - 100;
+
+                db.SaveChanges();
+            }
+            
 
 
             return Json(true, JsonRequestBehavior.AllowGet);

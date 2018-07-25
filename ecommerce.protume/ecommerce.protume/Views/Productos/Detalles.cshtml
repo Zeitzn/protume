@@ -4,7 +4,7 @@
     ViewBag.Title = "Detalles";
 }
 
-<div class="col-md-9 col-sm-12">
+<div class="col-md-9 col-sm-12" style="z-index:999">
     <div class="shop-product-right">
         <!-- Fetured Product area -->
         <div class="fetured-product-area brand-products c-carousel-button">
@@ -27,7 +27,7 @@
 
             <div class="row">
                 <div class="">
-                    <div class="modal-dialog" role="document">
+                    <div class="modal-dialog" role="document" >
                         <div class="modal-content">
 
                             <div class="modal-body">
@@ -90,6 +90,106 @@
 
     </div><!-- End Shop Product Left -->
 </div>
+<!-- Brand Logo area -->
+<div class="brand-logo-area" >
+    <div class="container">
+        <div class="brand-logo">
+            <div class="brand-logo-title">
+                <h2><strong>Comentarios</strong></h2>
+                @if (Request.Cookies["userInfo"] == null)
+                {
+                    <a href="#loginModal" role="button" data-toggle="modal">Para dejar un comentario debe estar logueado</a>
+                }
+                else
+                {
+                    <a href="#comentarioModal" role="button" data-toggle="modal">Escribir un comentario</a>
+
+                }
+            </div>
+            <div id="brands-logo" class="owl-carousel">
+                @if (ViewBag.Comentarios != null)
+                {
+                    foreach (var item in ViewBag.Comentarios)
+                    {
+                <div class="single-brand-logo" style="border:1px #c8c3c3 solid;padding:5px;">
+                    <p><strong>@item.cliente.nombre @item.cliente.apellidos</strong></p>
+                    <div class="responsive text-justify" style="height:90px">
+                        @item.descripcion
+                    </div>
+                    <div class="responsive text-right">
+                        @item.fecha.ToString("dd/MM/yyyy")
+                    </div>
+                </div>
+                    }
+                }
+                else
+                {
+                    <div class="single-brand-logo">
+                       
+                        <div class="responsive" style="height:150px">
+                          No hay comentarios para este producto
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div><!-- End Brand Logo area -->
+
+<div class="modal fade" id="comentarioModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="registermodal-container">
+            <h1>Comentario</h1><br>
+            <form role="form" id="frm-comentario">
+                <p class="text-danger">*Los comentarios deben contener menos de 500 caractéres</p>
+                <fieldset>
+                    @if (Request.Cookies["userInfo"] != null)
+                    {
+                        <input type="hidden" value="@Request.Cookies["userInfo"]["id"]" name="id_cliente" />
+                    }
+                    <input type="hidden" value="@Model.id" name="id_detalle_producto" />
+
+                    <div class="form-group col-md-12">
+
+                        <textarea maxlength="500" class="form-control" name="descripcion">
+
+                        </textarea>
+                    </div>
+
+                </fieldset>
+
+               
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary">
+                            Enviar
+                        </button>
+                        
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="comentarioExito" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="registermodal-container">
+            <h1 class="text-center text-success">Su comentario fue enviado con exito</h1><br>          
+
+
+                <div class="form-group text-center">
+                    <div class="col-md-12">
+                        <button id="mensajeExito" class="btn btn-primary">
+                            OK
+                        </button>
+
+                    </div>
+                </div>
+           
+        </div>
+    </div>
+</div>
+
 
 
 @section scripts{
@@ -99,6 +199,31 @@
 
             window.location = "Productos/Detalles/" + id;
         }
+
+        $("#frm-comentario").on("submit", function () {
+            //console.log($("#frm-comentario").serialize());
+            //window.history.back();
+            $.ajax({
+                type: "POST",                
+                url: '@Url.Action("Comentario","Productos")',
+                data: $("#frm-comentario").serialize(),
+                success: function (data) {
+
+                    $("#comentarioModal").modal("hide");
+                    $("#comentarioExito").modal();
+                    $("#mensajeExito").on("click", function () {
+                         location.reload();
+                    });
+
+                   
+                    
+                }
+            });
+
+            return false;
+        })
+
+        
     </script>
 
     <script>
@@ -127,7 +252,7 @@
                     itemActual = productos[i];
                 }
             }
-           
+
             var cantidadDetalle = $("#qty").val();
 
             if (!itemActual) {
@@ -211,7 +336,7 @@
 
         }
 
-    
+
         //function totalCarrito() {
         //    var carrito = localStorage.getItem("carrito");
         //    var productos = [];
@@ -225,7 +350,7 @@
 
         //    $("#totalCart").html(totalProductos);
         //}
-        
+
 
 
     </script>

@@ -5,48 +5,6 @@ VisualStudioVersion = 15.0.27703.2000
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ecommerce.protume", "ecommerce.protume\ecommerce.protume.csproj", "{95F4DC19-420A-4F0F-807A-68DB09E38F13}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "minoan", "..\..\..\..\Downloads\Templates\templateComercio\minoan\", "{8FA0E1FB-1A78-4F7A-B1D3-0D240615FA76}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_54194"
-		Debug.AspNetCompiler.PhysicalPath = "..\..\..\..\Downloads\Templates\templateComercio\minoan\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_54194\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_54194"
-		Release.AspNetCompiler.PhysicalPath = "..\..\..\..\Downloads\Templates\templateComercio\minoan\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_54194\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "54194"
-		SlnRelativePath = "..\..\..\..\Downloads\Templates\templateComercio\minoan\"
-	EndProjectSection
-EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "gentelella-master", "..\..\..\..\Downloads\Templates\gentelella-master\", "{F51A9A7E-F3B9-4C56-9E93-2966F62AB876}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_62427"
-		Debug.AspNetCompiler.PhysicalPath = "..\..\..\..\Downloads\Templates\gentelella-master\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_62427\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_62427"
-		Release.AspNetCompiler.PhysicalPath = "..\..\..\..\Downloads\Templates\gentelella-master\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_62427\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "62427"
-		SlnRelativePath = "..\..\..\..\Downloads\Templates\gentelella-master\"
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,14 +15,6 @@ Global
 		{95F4DC19-420A-4F0F-807A-68DB09E38F13}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95F4DC19-420A-4F0F-807A-68DB09E38F13}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95F4DC19-420A-4F0F-807A-68DB09E38F13}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8FA0E1FB-1A78-4F7A-B1D3-0D240615FA76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8FA0E1FB-1A78-4F7A-B1D3-0D240615FA76}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8FA0E1FB-1A78-4F7A-B1D3-0D240615FA76}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{8FA0E1FB-1A78-4F7A-B1D3-0D240615FA76}.Release|Any CPU.Build.0 = Debug|Any CPU
-		{F51A9A7E-F3B9-4C56-9E93-2966F62AB876}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F51A9A7E-F3B9-4C56-9E93-2966F62AB876}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F51A9A7E-F3B9-4C56-9E93-2966F62AB876}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{F51A9A7E-F3B9-4C56-9E93-2966F62AB876}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

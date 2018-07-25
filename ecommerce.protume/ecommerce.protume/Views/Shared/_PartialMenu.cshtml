@@ -5,7 +5,7 @@
         <div class="container">
             <div class="header-top-inner">
                 <div class="row">
-                    <div class="col-md-8 col-sm-12">
+                    <div class="col-md-10 col-sm-12">
                         <div class="header-top-left">
                             <div class="phone">
                                 <label>Llamanos:</label> (066) 839847
@@ -18,9 +18,9 @@
                                
                                 <div class="header-link">
                                   
-                                    <ul>             
-                                     
-                                        @if(Request.Cookies["userInfo"]==null)
+                                    <ul>
+
+                                        @if (Request.Cookies["userInfo"] == null)
                                         {
                                             <li><a href="#loginModal" role="button" data-toggle="modal">Login</a></li>
                                             <li><text> o </text></li>
@@ -40,14 +40,16 @@
                                                     @*<li><a href="#">Ingresar</a></li>*@
                                                 </ul>
                                             </li>
+                                            <li><text> | </text></li>
+                                            <li><a href="#">Mis monedas: <i class="fa fa-bitcoin" style="color:#dc7504"></i> @ecommerce.protume.Controllers.AccountController.ObtenerMonedasUsuario(Request.Cookies["userInfo"]["id"].ToString())</a></li>
                                         }
-                                        
+
                                     </ul>
                                 </div>
                             </div><!-- End Header Link Area -->
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-12">
+                    <div class="col-md-2 col-sm-12">
                         <div class="header-top-right">
                             <!-- Header Social Icon -->
                             <div class="header-social-icon">
@@ -221,7 +223,7 @@
             <form role="form" method="POST" action="@Url.Action("RegistrarCliente","Account")">
 
                 <fieldset>
-                    <legend>Account Details</legend>
+                    <legend>Detalles de la Cuenta</legend>
                     <div class="form-group col-md-6">
                         <label for="">Nombre</label>
                         <input type="text" class="form-control" name="nombre" placeholder="Nombre">
@@ -250,6 +252,7 @@
                         <label for="">Teléfono / Celular</label>
                         <input type="text" class="form-control" name="telefono" placeholder="Teléfono / Celular">
                     </div>
+                    <input type="hidden" name="puntos" value="0"/>
 
 
                 </fieldset>
